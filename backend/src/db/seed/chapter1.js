@@ -1,0 +1,487 @@
+// Complete Chapter 1 (Arjuna Vishada Yoga - "Arjuna's dilemma"), all 47 verses,
+// split into 10 Parts sized for a few minutes of reading each.
+// Sanskrit/transliteration verified against enjoylearningsanskrit.com's chapter-1 text.
+// Explanations below are original simple paraphrases (not copied from any single
+// translator), per the "AI-assisted, no separate review pass" content decision.
+
+const chapter1 = {
+    number: 1,
+    title: 'Arjuna\'s dilemma',
+    total_verses: 47,
+    parts: [
+        // Part 1: verses 1-3 (already seeded previously - kept for continuity)
+        {
+            part_number: 1,
+            verse_start: 1,
+            verse_end: 3,
+            estimated_minutes: 3.5,
+            verses: [
+                {
+                    verse_number: 1,
+                    sanskrit: 'धृतराष्ट्र उवाच। धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः। मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय।।',
+                    transliteration: 'dhritarashtra uvacha: dharma-kshetre kuru-kshetre samaveta yuyutsavah',
+                    explanations: { en: 'The blind king Dhritarashtra asks his advisor Sanjaya what happened when his sons and the Pandavas gathered on the battlefield of Kurukshetra, ready to fight.' },
+                },
+                {
+                    verse_number: 2,
+                    sanskrit: 'सञ्जय उवाच। दृष्ट्वा तु पाण्डवानीकं व्यूढं दुर्योधनस्तदा। आचार्यमुपसङ्गम्य राजा वचनमब्रवीत्।।',
+                    transliteration: 'sanjaya uvacha: drishtva tu pandavanikam vyudham duryodhanas tada',
+                    explanations: { en: 'Sanjaya begins his account: seeing the Pandava army arranged for battle, Prince Duryodhana approached his teacher Drona to speak with him.' },
+                },
+                {
+                    verse_number: 3,
+                    sanskrit: 'पश्यैतां पाण्डुपुत्राणामाचार्य महतीं चमूम्। व्यूढां द्रुपदपुत्रेण तव शिष्येण धीमता।।',
+                    transliteration: 'pashyaitam pandu-putranam acharya mahatim chamum',
+                    explanations: { en: 'Duryodhana points out to Drona the vast army of the Pandavas, arranged skillfully by Dhrishtadyumna - ironically, Drona\'s own former student.' },
+                },
+            ],
+            questions: [{
+                question_text: 'Why does the Gita open with Dhritarashtra asking a question, rather than Krishna speaking?',
+                options: [
+                    { text: 'The whole story is being narrated to the blind king by Sanjaya, who has divine vision to see the battlefield', is_correct: true },
+                    { text: 'Dhritarashtra is the main character of the Gita', is_correct: false },
+                    { text: 'It is a mistake in the traditional text', is_correct: false },
+                ],
+                explanation: 'The Gita is framed as a story-within-a-story: Sanjaya narrates the entire battlefield conversation to the blind king Dhritarashtra using a divinely granted vision, which is why the whole text opens with his question.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 2: verses 4-6
+        {
+            part_number: 2,
+            verse_start: 4,
+            verse_end: 6,
+            estimated_minutes: 3.0,
+            verses: [
+                {
+                    verse_number: 4,
+                    sanskrit: 'अत्र शूरा महेष्वासा भीमार्जुनसमा युधि। युयुधानो विराटश्च द्रुपदश्च महारथः।।',
+                    transliteration: 'atra shura maheshvasa bhimarjuna-sama yudhi',
+                    explanations: { en: 'Duryodhana continues listing the Pandava side\'s great warriors, comparing several of them in skill to Bhima and Arjuna themselves.' },
+                },
+                {
+                    verse_number: 5,
+                    sanskrit: 'धृष्टकेतुश्चेकितानः काशिराजश्च वीर्यवान्। पुरुजित्कुन्तिभोजश्च शैब्यश्च नरपुंगवः।।',
+                    transliteration: 'dhrishtaketush chekitanah kashirajash cha viryavan',
+                    explanations: { en: 'More Pandava-side warriors are named: Dhrishtaketu, Chekitana, the powerful King of Kashi, Purujit, Kuntibhoja, and Shaibya.' },
+                },
+                {
+                    verse_number: 6,
+                    sanskrit: 'युधामन्युश्च विक्रान्त उत्तमौजाश्च वीर्यवान्। सौभद्रो द्रौपदेयाश्च सर्व एव महारथाः।।',
+                    transliteration: 'yudhamanyush cha vikranta uttamaujash cha viryavan',
+                    explanations: { en: 'The list continues: the bold Yudhamanyu, the mighty Uttamaujas, Abhimanyu (Subhadra\'s son), and Draupadi\'s five sons - all described as great chariot-warriors.' },
+                },
+            ],
+            questions: [{
+                question_text: 'What is Duryodhana\'s purpose in listing out the Pandava warriors one by one?',
+                options: [
+                    { text: 'He is bragging about his own strength', is_correct: false },
+                    { text: 'He is trying to reassure himself and rally his own commander by naming the threat clearly', is_correct: true },
+                    { text: 'He is planning to switch sides', is_correct: false },
+                ],
+                explanation: 'Duryodhana\'s detailed listing of enemy warriors is a mix of anxiety and strategy - by naming the threat precisely to Drona, he is both sizing up the danger and trying to rally his own side\'s confidence.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 3: verses 7-11
+        {
+            part_number: 3,
+            verse_start: 7,
+            verse_end: 11,
+            estimated_minutes: 4.0,
+            verses: [
+                {
+                    verse_number: 7,
+                    sanskrit: 'अस्माकं तु विशिष्टा ये तान्निबोध द्विजोत्तम। नायका मम सैन्यस्य संज्ञार्थं तान्ब्रवीमि ते।।',
+                    transliteration: 'asmakam tu vishishta ye tan nibodha dvijottama',
+                    explanations: { en: 'Duryodhana now turns to naming his own side\'s standout commanders, so Drona knows exactly who leads his army.' },
+                },
+                {
+                    verse_number: 8,
+                    sanskrit: 'भवान्भीष्मश्च कर्णश्च कृपश्च समितिंजयः। अश्वत्थामा विकर्णश्च सौमदत्तिस्तथैव च।।',
+                    transliteration: 'bhavan bhishmash cha karnash cha kripash cha samitinjayah',
+                    explanations: { en: 'He names Drona himself, Bhishma, Karna, Kripa, Ashwatthama, Vikarna, and Bhurishrava - the senior warriors he\'s counting on.' },
+                },
+                {
+                    verse_number: 9,
+                    sanskrit: 'अन्ये च बहवः शूरा मदर्थे त्यक्तजीविताः। नानाशस्त्रप्रहरणाः सर्वे युद्धविशारदाः।।',
+                    transliteration: 'anye cha bahavah shura madarthe tyakta-jivitah',
+                    explanations: { en: 'Beyond the named leaders, Duryodhana notes there are many more warriors ready to risk their lives for him, all skilled with different weapons.' },
+                },
+                {
+                    verse_number: 10,
+                    sanskrit: 'अपर्याप्तं तदस्माकं बलं भीष्माभिरक्षितम्। पर्याप्तं त्विदमेतेषां बलं भीमाभिरक्षितम्।।',
+                    transliteration: 'aparyaptam tad asmakam balam bhishmabhirakshitam',
+                    explanations: { en: 'Duryodhana assesses the two armies: his own force, protected by Bhishma, he sees as vast beyond measure; theirs, protected by Bhima, he sees as merely sufficient - though scholars read this line in different ways.' },
+                },
+                {
+                    verse_number: 11,
+                    sanskrit: 'अयनेषु च सर्वेषु यथाभागमवस्थिताः। भीष्ममेवाभिरक्षन्तु भवन्तः सर्व एव हि।।',
+                    transliteration: 'ayaneshu cha sarveshu yatha-bhagam avasthitah',
+                    explanations: { en: 'Duryodhana instructs all his commanders to hold their assigned positions and, above all, to protect Bhishma, their most senior warrior.' },
+                },
+            ],
+            questions: [{
+                question_text: 'Why does Duryodhana specifically ask everyone to protect Bhishma above all else?',
+                options: [
+                    { text: 'Because Bhishma is the eldest and most respected, and his safety is treated as central to the whole army\'s morale and strategy', is_correct: true },
+                    { text: 'Because Bhishma secretly wants to switch sides', is_correct: false },
+                    { text: 'Because Bhishma is the weakest fighter and needs protection', is_correct: false },
+                ],
+                explanation: 'Bhishma is the grand patriarch and most senior commander on the Kaurava side - his safety symbolizes the stability of the entire army, which is why Duryodhana singles him out for special protection.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 4: verses 12-19
+        {
+            part_number: 4,
+            verse_start: 12,
+            verse_end: 19,
+            estimated_minutes: 4.5,
+            verses: [
+                {
+                    verse_number: 12,
+                    sanskrit: 'तस्य सञ्जनयन्हर्षं कुरुवृद्धः पितामहः। सिंहनादं विनद्योच्चैः शङ्खं दध्मौ प्रतापवान्।।',
+                    transliteration: 'tasya sanjanayan harsham kuru-vriddhah pitamahah',
+                    explanations: { en: 'To lift Duryodhana\'s spirits, the aged Bhishma roars like a lion and blows his conch shell loudly, signaling the start of the confrontation.' },
+                },
+                {
+                    verse_number: 13,
+                    sanskrit: 'ततः शङ्खाश्च भेर्यश्च पणवानकगोमुखाः। सहसैवाभ्यहन्यन्त स शब्दस्तुमुलोऽभवत्।।',
+                    transliteration: 'tatah shankhash cha bheryash cha panavanaka-gomukhah',
+                    explanations: { en: 'Conches, drums, and horns erupt all at once across the Kaurava army, creating a tremendous, chaotic wall of sound.' },
+                },
+                {
+                    verse_number: 14,
+                    sanskrit: 'ततः श्वेतैर्हयैर्युक्ते महति स्यन्दने स्थितौ। माधवः पाण्डवश्चैव दिव्यौ शङ्खौ प्रदध्मतुः।।',
+                    transliteration: 'tatah shvetair hayair yukte mahati syandane sthitau',
+                    explanations: { en: 'On the other side, standing in their grand chariot drawn by white horses, Krishna and Arjuna blow their own divine conches in response.' },
+                },
+                {
+                    verse_number: 15,
+                    sanskrit: 'पाञ्चजन्यं हृषीकेशो देवदत्तं धनञ्जयः। पौण्ड्रं दध्मौ महाशङ्खं भीमकर्मा वृकोदरः।।',
+                    transliteration: 'panchajanyam hrishikeshah devadattam dhananjayah',
+                    explanations: { en: 'Krishna blows his conch Panchajanya, Arjuna blows his conch Devadatta, and the mighty Bhima blows his own great conch, Paundra.' },
+                },
+                {
+                    verse_number: 16,
+                    sanskrit: 'अनन्तविजयं राजा कुन्तीपुत्रो युधिष्ठिरः। नकुलः सहदेवश्च सुघोषमणिपुष्पकौ।।',
+                    transliteration: 'ananta-vijayam raja kunti-putro yudhishthirah',
+                    explanations: { en: 'King Yudhishthira blows his conch Anantavijaya, while his younger brothers Nakula and Sahadeva blow their own conches too.' },
+                },
+                {
+                    verse_number: 17,
+                    sanskrit: 'काश्यश्च परमेष्वासः शिखण्डी च महारथः। धृष्टद्युम्नो विराटश्च सात्यकिश्चापराजितः।।',
+                    transliteration: 'kashyash cha parameshvasah shikhandi cha maharathah',
+                    explanations: { en: 'More Pandava-side warriors join in blowing their conches: the King of Kashi, Shikhandi, Dhrishtadyumna, Virata, and the unconquered Satyaki.' },
+                },
+                {
+                    verse_number: 18,
+                    sanskrit: 'द्रुपदो द्रौपदेयाश्च सर्वशः पृथिवीपते। सौभद्रश्च महाबाहुः शङ्खान्दध्मुः पृथक्पृथक्।।',
+                    transliteration: 'drupado draupadeyash cha sarvashah prithivi-pate',
+                    explanations: { en: 'Sanjaya tells Dhritarashtra that Drupada, Draupadi\'s sons, and the mighty Abhimanyu each blow their own separate conches too.' },
+                },
+                {
+                    verse_number: 19,
+                    sanskrit: 'स घोषो धार्तराष्ट्राणां हृदयानि व्यदारयत्। नभश्च पृथिवीं चैव तुमुलो व्यनुनादयन्।।',
+                    transliteration: 'sa ghosho dhartarashtranam hridayani vyadarayat',
+                    explanations: { en: 'This overwhelming combined sound shakes the hearts of Dhritarashtra\'s sons and echoes across the sky and earth.' },
+                },
+            ],
+            questions: [{
+                question_text: 'What is the significance of both sides blowing conch shells before the battle?',
+                options: [
+                    { text: 'It was simply a musical tradition with no deeper meaning', is_correct: false },
+                    { text: 'It formally announces both armies\' readiness and resolve to fight, turning tension into an irreversible moment', is_correct: true },
+                    { text: 'It was a signal for the armies to retreat', is_correct: false },
+                ],
+                explanation: 'Conch-blowing was a ceremonial declaration of readiness for war - once both sides sound their conches, the confrontation becomes formally unavoidable, which sets up the emotional weight of what happens next.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 5: verses 20-27
+        {
+            part_number: 5,
+            verse_start: 20,
+            verse_end: 27,
+            estimated_minutes: 4.5,
+            verses: [
+                {
+                    verse_number: 20,
+                    sanskrit: 'अथ व्यवस्थितान्दृष्ट्वा धार्तराष्ट्रान्कपिध्वजः। प्रवृत्ते शस्त्रसम्पाते धनुरुद्यम्य पाण्डवः।।',
+                    transliteration: 'atha vyavasthitan drishtva dhartarashtran kapi-dhvajah',
+                    explanations: { en: 'As the fighting is about to begin, Arjuna - whose chariot flag bears the emblem of a monkey - raises his bow, seeing the opposing army arrayed before him.' },
+                },
+                {
+                    verse_number: 21,
+                    sanskrit: 'हृषीकेशं तदा वाक्यमिदमाह महीपते। सेनयोरुभयोर्मध्ये रथं स्थापय मेऽच्युत।।',
+                    transliteration: 'hrishikesham tada vakyam idam aha mahi-pate',
+                    explanations: { en: 'Arjuna asks Krishna to drive his chariot to a position right between the two armies, so he can get a clear look at everyone gathered.' },
+                },
+                {
+                    verse_number: 22,
+                    sanskrit: 'यावदेतान्निरीक्षेऽहं योद्धुकामानवस्थितान्। कैर्मया सह योद्धव्यमस्मिन्रणसमुद्यमे।।',
+                    transliteration: 'yavad etan nirikshe\'ham yoddhu-kaman avasthitan',
+                    explanations: { en: 'He wants to see exactly who is standing ready to fight, so he can know precisely who he will have to face in this upcoming battle.' },
+                },
+                {
+                    verse_number: 23,
+                    sanskrit: 'योत्स्यमानानवेक्षेऽहं य एतेऽत्र समागताः। धार्तराष्ट्रस्य दुर्बुद्धेर्युद्धे प्रियचिकीर्षवः।।',
+                    transliteration: 'yotsyamanan avekshe\'ham ya ete\'tra samagatah',
+                    explanations: { en: 'Arjuna wants to survey those who have gathered to fight in support of the ill-intentioned Duryodhana.' },
+                },
+                {
+                    verse_number: 24,
+                    sanskrit: 'एवमुक्तो हृषीकेशो गुडाकेशेन भारत। सेनयोरुभयोर्मध्ये स्थापयित्वा रथोत्तमम्।।',
+                    transliteration: 'evam ukto hrishikesho gudakeshena bharata',
+                    explanations: { en: 'At Arjuna\'s request, Krishna steers the magnificent chariot to a position right between the two assembled armies.' },
+                },
+                {
+                    verse_number: 25,
+                    sanskrit: 'भीष्मद्रोणप्रमुखतः सर्वेषां च महीक्षिताम्। उवाच पार्थ पश्यैतान्समवेतान्कुरूनिति।।',
+                    transliteration: 'bhishma-drona-pramukhatah sarvesham cha mahi-kshitam',
+                    explanations: { en: 'Standing before Bhishma, Drona, and all the assembled rulers, Krishna tells Arjuna to simply look at all the Kurus gathered there.' },
+                },
+                {
+                    verse_number: 26,
+                    sanskrit: 'तत्रापश्यत्स्थितान्पार्थः पितॄनथ पितामहान्। आचार्यान्मातुलान्भ्रातॄन्पुत्रान्पौत्रान्सखींस्तथा।।',
+                    transliteration: 'tatrapashyat sthitan parthah pitrin atha pitamahan',
+                    explanations: { en: 'Looking across the battlefield, Arjuna sees his own uncles, grandfathers, teachers, cousins, sons, grandsons, and close friends standing on both sides.' },
+                },
+                {
+                    verse_number: 27,
+                    sanskrit: 'श्वशुरान्सुहृदश्चैव सेनयोरुभयोरपि। तान्समीक्ष्य स कौन्तेयः सर्वान्बन्धूनवस्थितान्।।',
+                    transliteration: 'shvashuran suhridash chaiva senayor ubhayor api',
+                    explanations: { en: 'He also spots fathers-in-law and well-wishers positioned in both armies - and seeing all these relatives together starts to overwhelm him.' },
+                },
+            ],
+            questions: [{
+                question_text: 'Why does Arjuna specifically ask Krishna to place the chariot between the two armies rather than behind his own side?',
+                options: [
+                    { text: 'He wanted a better strategic vantage point to plan an attack', is_correct: false },
+                    { text: 'He wanted to personally see who he would be fighting - which is what triggers his emotional crisis once he recognizes his own family', is_correct: true },
+                    { text: 'It was a religious ritual required before every battle', is_correct: false },
+                ],
+                explanation: 'Arjuna\'s request seems tactical at first, but it\'s actually what sets up the entire crisis of the chapter - by seeing his own relatives, teachers, and friends arrayed for battle, the war stops being abstract and becomes deeply personal.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 6: verses 28-31
+        {
+            part_number: 6,
+            verse_start: 28,
+            verse_end: 31,
+            estimated_minutes: 3.5,
+            verses: [
+                {
+                    verse_number: 28,
+                    sanskrit: 'कृपया परयाविष्टो विषीदन्निदमब्रवीत्। दृष्ट्वेमान्स्वजनान्कृष्ण युयुत्सून्समवस्थितान्।।',
+                    transliteration: 'kripaya paraya\'vishto vishidann idam abravit',
+                    explanations: { en: 'Overcome with deep compassion and sorrow, Arjuna begins to speak, telling Krishna what he feels upon seeing all his kinsmen ready for battle.' },
+                },
+                {
+                    verse_number: 29,
+                    sanskrit: 'सीदन्ति मम गात्राणि मुखं च परिशुष्यति। वेपथुश्च शरीरे मे रोमहर्षश्च जायते।।',
+                    transliteration: 'sidanti mama gatrani mukham cha parishushyati',
+                    explanations: { en: 'Arjuna describes physical symptoms of distress: his limbs feel weak, his mouth goes dry, his body trembles, and his hair stands on end.' },
+                },
+                {
+                    verse_number: 30,
+                    sanskrit: 'गाण्डीवं स्रंसते हस्तात्त्वक्चैव परिदह्यते। न च शक्नोम्यवस्थातुं भ्रमतीव च मे मनः।।',
+                    transliteration: 'gandivam sramsate hastat tvak chaiva paridahyate',
+                    explanations: { en: 'His famous bow, Gandiva, slips from his hand, his skin feels like it\'s burning, and he feels unable to stand steady as his mind spins.' },
+                },
+                {
+                    verse_number: 31,
+                    sanskrit: 'निमित्तानि च पश्यामि विपरीतानि केशव। न च श्रेयोऽनुपश्यामि हत्वा स्वजनमाहवे।।',
+                    transliteration: 'nimittani cha pashyami viparitani keshava',
+                    explanations: { en: 'Arjuna tells Krishna he is seeing bad omens all around, and he can\'t see any good coming from killing his own relatives in this war.' },
+                },
+            ],
+            questions: [{
+                question_text: 'What is the significance of Arjuna\'s physical symptoms in this passage?',
+                options: [
+                    { text: 'They suggest he is simply physically exhausted from the journey', is_correct: false },
+                    { text: 'They show that his moral and emotional crisis is intense enough to have real physical effects - this isn\'t just hesitation, it\'s genuine anguish', is_correct: true },
+                    { text: 'They are a literary device with no real meaning', is_correct: false },
+                ],
+                explanation: 'The vivid physical description - trembling, dry mouth, weakening body - signals that Arjuna\'s conflict is not simple battlefield nerves, but a profound moral crisis that the rest of the Gita will need to resolve.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 7: verses 32-35
+        {
+            part_number: 7,
+            verse_start: 32,
+            verse_end: 35,
+            estimated_minutes: 3.5,
+            verses: [
+                {
+                    verse_number: 32,
+                    sanskrit: 'न काङ्क्षे विजयं कृष्ण न च राज्यं सुखानि च। किं नो राज्येन गोविन्द किं भोगैर्जीवितेन वा।।',
+                    transliteration: 'na kankshe vijayam krishna na cha rajyam sukhani cha',
+                    explanations: { en: 'Arjuna tells Krishna he no longer wants victory, a kingdom, or personal pleasures - and questions what use any of that is if it comes at this cost.' },
+                },
+                {
+                    verse_number: 33,
+                    sanskrit: 'येषामर्थे काङ्क्षितं नो राज्यं भोगाः सुखानि च। त इमेऽवस्थिता युद्धे प्राणांस्त्यक्त्वा धनानि च।।',
+                    transliteration: 'yesham arthe kankshitam no rajyam bhogah sukhani cha',
+                    explanations: { en: 'He points out that the very people they would want a kingdom and comforts for - their own relatives and elders - are the ones standing here risking their lives.' },
+                },
+                {
+                    verse_number: 34,
+                    sanskrit: 'आचार्याः पितरः पुत्रास्तथैव च पितामहाः। मातुलाः श्वशुराः पौत्राः स्याला: संबन्धिनस्तथा।।',
+                    transliteration: 'acharyah pitarah putras tathaiva cha pitamahah',
+                    explanations: { en: 'Arjuna lists again exactly who stands before him: teachers, elders, sons, grandfathers, uncles, in-laws, grandsons, and relatives.' },
+                },
+                {
+                    verse_number: 35,
+                    sanskrit: 'एतान्न हन्तुमिच्छामि घ्नतोऽपि मधुसूदन। अपि त्रैलोक्यराज्यस्य हेतोः किं नु महीकृते।।',
+                    transliteration: 'etan na hantum ichchhami ghnato\'pi madhusudana',
+                    explanations: { en: 'He tells Krishna he doesn\'t want to kill these people even if they attack him first - not even for rule over all three worlds, let alone this one earthly kingdom.' },
+                },
+            ],
+            questions: [{
+                question_text: 'What is the core of Arjuna\'s argument in this passage?',
+                options: [
+                    { text: 'He is afraid of losing the battle', is_correct: false },
+                    { text: 'He questions whether any victory, wealth, or power is worth it if it means destroying the very people those things were meant to benefit', is_correct: true },
+                    { text: 'He wants to negotiate a truce with Duryodhana', is_correct: false },
+                ],
+                explanation: 'Arjuna isn\'t expressing fear of losing - he\'s raising a values question: what is the point of gaining a kingdom if the people you\'d share it with are the ones you must kill to get it?',
+                difficulty: 'application',
+            }],
+        },
+        // Part 8: verses 36-39
+        {
+            part_number: 8,
+            verse_start: 36,
+            verse_end: 39,
+            estimated_minutes: 3.5,
+            verses: [
+                {
+                    verse_number: 36,
+                    sanskrit: 'निहत्य धार्तराष्ट्रान्नः का प्रीतिः स्याज्जनार्दन। पापमेवाश्रयेदस्मान्हत्वैतानाततायिनः।।',
+                    transliteration: 'nihatya dhartarashtran nah ka pritih syaj janardana',
+                    explanations: { en: 'Arjuna asks what joy could possibly come from killing Dhritarashtra\'s sons - he believes only sin would result from killing them, even though they may be the aggressors.' },
+                },
+                {
+                    verse_number: 37,
+                    sanskrit: 'तस्मान्नार्हा वयं हन्तुं धार्तराष्ट्रान्स्वबान्धवान्। स्वजनं हि कथं हत्वा सुखिनः स्याम माधव।।',
+                    transliteration: 'tasman narha vayam hantum dhartarashtran sa-bandhavan',
+                    explanations: { en: 'He concludes that they have no right to kill their own relatives, and asks how they could ever be happy after killing their own people.' },
+                },
+                {
+                    verse_number: 38,
+                    sanskrit: 'यद्यप्येते न पश्यन्ति लोभोपहतचेतसः। कुलक्षयकृतं दोषं मित्रद्रोहे च पातकम्।।',
+                    transliteration: 'yady apy ete na pashyanti lobhopahata-chetasah',
+                    explanations: { en: 'Arjuna notes that even if the other side, blinded by greed, doesn\'t see the wrongness of destroying a family or betraying friends...' },
+                },
+                {
+                    verse_number: 39,
+                    sanskrit: 'कथं न ज्ञेयमस्माभिः पापाद्स्मान्निवर्तितुम्। कुलक्षयकृतं दोषं प्रपश्यद्भिर्जनार्दन।।',
+                    transliteration: 'katham na jneyam asmabhih papad asman nivartitum',
+                    explanations: { en: '...he asks why they, who clearly do see this wrongness, shouldn\'t know better and turn away from committing this sin themselves.' },
+                },
+            ],
+            questions: [{
+                question_text: 'What distinction is Arjuna drawing between his side and Duryodhana\'s side in this passage?',
+                options: [
+                    { text: 'He claims his side is stronger in battle', is_correct: false },
+                    { text: 'He argues that even if the other side is blinded by greed and doesn\'t see the wrong in this war, his side knows better and should act on that awareness', is_correct: true },
+                    { text: 'He claims the other side started the conflict unfairly', is_correct: false },
+                ],
+                explanation: 'Arjuna is making a moral argument, not a strategic one - he suggests that knowing better creates a responsibility to act better, which is part of why he feels so torn about proceeding with the war.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 9: verses 40-44
+        {
+            part_number: 9,
+            verse_start: 40,
+            verse_end: 44,
+            estimated_minutes: 4.0,
+            verses: [
+                {
+                    verse_number: 40,
+                    sanskrit: 'कुलक्षये प्रणश्यन्ति कुलधर्माः सनातनाः। धर्मे नष्टे कुलं कृत्स्नमधर्मोऽभिभवत्युत।।',
+                    transliteration: 'kula-kshaye pranashyanti kula-dharmah sanatanah',
+                    explanations: { en: 'Arjuna reasons that when a family is destroyed, its long-standing traditions and values collapse with it, opening the door to disorder.' },
+                },
+                {
+                    verse_number: 41,
+                    sanskrit: 'अधर्माभिभवात्कृष्ण प्रदुष्यन्ति कुलस्त्रियः। स्त्रीषु दुष्टासु वार्ष्णेय जायते वर्णसङ्करः।।',
+                    transliteration: 'adharmabhibhavat krishna pradushyanti kula-striyah',
+                    explanations: { en: 'He continues that when values break down, the social fabric of the family suffers too, leading to broader social confusion and instability - reflecting the social concerns of his time.' },
+                },
+                {
+                    verse_number: 42,
+                    sanskrit: 'सङ्करो नरकायैव कुलघ्नानां कुलस्य च। पतन्ति पितरो ह्येषां लुप्तपिण्डोदकक्रियाः।।',
+                    transliteration: 'sankaro narakayaiva kula-ghnanam kulasya cha',
+                    explanations: { en: 'Arjuna says this social breakdown brings ruin to both the family-destroyers and the family itself, and even their ancestors suffer when traditional rites are no longer performed.' },
+                },
+                {
+                    verse_number: 43,
+                    sanskrit: 'दोषैरेतैः कुलघ्नानां वर्णसङ्करकारकैः। उत्साद्यन्ते जातिधर्माः कुलधर्माश्च शाश्वताः।।',
+                    transliteration: 'doshair etaih kula-ghnanam varna-sankara-karakaih',
+                    explanations: { en: 'He argues that these consequences from destroying a family end up erasing long-held communal and family traditions entirely.' },
+                },
+                {
+                    verse_number: 44,
+                    sanskrit: 'उत्सन्नकुलधर्माणां मनुष्याणां जनार्दन। नरके नियतं वासो भवतीत्यनुशुश्रुम।।',
+                    transliteration: 'utsanna-kula-dharmanam manushyanam janardana',
+                    explanations: { en: 'Arjuna says he has always heard that people whose family traditions collapse are destined to suffer greatly as a result.' },
+                },
+            ],
+            questions: [{
+                question_text: 'What kind of argument is Arjuna making across these verses (40-44)?',
+                options: [
+                    { text: 'A purely military argument about troop numbers', is_correct: false },
+                    { text: 'A social and ethical argument - that destroying a family destroys the traditions and values that hold a whole community together', is_correct: true },
+                    { text: 'A financial argument about the cost of war', is_correct: false },
+                ],
+                explanation: 'Arjuna broadens his objection beyond his personal grief - he\'s now arguing that the war would damage the social and moral fabric that generations of family tradition have built, a concern rooted in his own time and worldview.',
+                difficulty: 'application',
+            }],
+        },
+        // Part 10: verses 45-47 (final part of chapter 1)
+        {
+            part_number: 10,
+            verse_start: 45,
+            verse_end: 47,
+            estimated_minutes: 3.5,
+            verses: [
+                {
+                    verse_number: 45,
+                    sanskrit: 'अहो बत महत्पापं कर्तुं व्यवसिता वयम्। यद्राज्यसुखलोभेन हन्तुं स्वजनमुद्यताः।।',
+                    transliteration: 'aho bata mahat papam kartum vyavasita vayam',
+                    explanations: { en: 'Arjuna laments that they are about to commit a terrible wrong, ready to kill their own relatives out of a desire for kingdom and comfort.' },
+                },
+                {
+                    verse_number: 46,
+                    sanskrit: 'यदि मामप्रतीकारमशस्त्रं शस्त्रपाणयः। धार्तराष्ट्रा रणे हन्युस्तन्मे क्षेमतरं भवेत्।।',
+                    transliteration: 'yadi mam apratikaram ashastram shastra-panayah',
+                    explanations: { en: 'He says he would rather be killed unarmed and without resistance by the armed sons of Dhritarashtra than go through with this fight.' },
+                },
+                {
+                    verse_number: 47,
+                    sanskrit: 'सञ्जय उवाच। एवमुक्त्वार्जुनः सङ्ख्ये रथोपस्थ उपाविशत्। विसृज्य सशरं चापं शोकसंविग्नमानसः।।',
+                    transliteration: 'sanjaya uvacha: evam uktvarjunah sankhye rathopastha upavishat',
+                    explanations: { en: 'Sanjaya reports that after saying all this, Arjuna - his mind overwhelmed with grief - drops his bow and arrows and sinks down onto his chariot seat. This is where Chapter 1 ends, setting up Krishna\'s teaching in Chapter 2.' },
+                },
+            ],
+            questions: [{
+                question_text: 'How does Chapter 1 end, and why does this matter for the rest of the Gita?',
+                options: [
+                    { text: 'Arjuna wins a small skirmish and gains confidence', is_correct: false },
+                    { text: 'Arjuna collapses into despair and refuses to fight, setting up the need for Krishna\'s teaching that follows in Chapter 2', is_correct: true },
+                    { text: 'The chapter ends with the war already over', is_correct: false },
+                ],
+                explanation: 'Chapter 1 ends at Arjuna\'s lowest point - paralyzed by grief and moral confusion. This crisis is exactly what creates the need for the dialogue that unfolds through the rest of the Gita, where Krishna responds to each of Arjuna\'s doubts.',
+                difficulty: 'application',
+            }],
+        },
+    ],
+};
+
+module.exports = chapter1;

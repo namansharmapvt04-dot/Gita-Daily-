@@ -1,0 +1,100 @@
+// Complete Chapter 9 (Raja Vidya Raja Guhya Yoga - "The Yoga of Royal Knowledge and Royal Secret"),
+// all 34 verses, 6 parts.
+
+const chapter9 = {
+    number: 9,
+    title: 'The Royal Knowledge and Royal Secret',
+    total_verses: 34,
+    parts: [
+        {
+            part_number: 1,
+            verse_start: 1,
+            verse_end: 6,
+            estimated_minutes: 4.5,
+            verses: [
+                { verse_number: 1, sanskrit: 'श्रीभगवानुवाच। इदं तु ते गुह्यतमं प्रवक्ष्याम्यनसूयवे। ज्ञानं विज्ञानसहितं यज्ज्ञात्वा मोक्ष्यसेऽशुभात्।।', transliteration: 'shri bhagavan uvacha: idam tu te guhyatamam pravakshyamy anasuyave', explanations: { en: 'Krishna says he will now share the most secret knowledge with Arjuna, who does not find fault with him — knowing which, Arjuna will be freed from misfortune.' } },
+                { verse_number: 2, sanskrit: 'राजविद्या राजगुह्यं पवित्रमिदमुत्तमम्। प्रत्यक्षावगमं धर्म्यं सुसुखं कर्तुमव्ययम्।।', transliteration: 'raja-vidya raja-guhyam pavitram idam uttamam', explanations: { en: 'This is the royal knowledge, the royal secret — the most purifying, directly realizable, righteous, easy to practice, and imperishable.' } },
+                { verse_number: 3, sanskrit: 'अश्रद्दधानाः पुरुषा धर्मस्यास्य परन्तप। अप्राप्य मां निवर्तन्ते मृत्युसंसारवर्त्मनि।।', transliteration: 'ashraddadhanah purusha dharmasyasya parantapa', explanations: { en: 'People without faith in this dharma, without reaching Krishna, return to the path of the cycle of death and rebirth.' } },
+                { verse_number: 4, sanskrit: 'मया ततमिदं सर्वं जगदव्यक्तमूर्तिना। मत्स्थानि सर्वभूतानि न चाहं तेष्ववस्थितः।।', transliteration: 'maya tatam idam sarvam jagad avyakta-murtina', explanations: { en: 'All this world is pervaded by Krishna in his unmanifest form. All beings exist in him, but he does not exist in them.' } },
+                { verse_number: 5, sanskrit: 'न च मत्स्थानि भूतानि पश्य मे योगमैश्वरम्। भूतभृन्न च भूतस्थो ममात्मा भूतभावनः।।', transliteration: 'na cha mat-sthani bhutani pashya me yogam aishvaram', explanations: { en: 'And yet beings do not truly exist in him — see his divine yoga! He sustains beings yet does not truly dwell in them, and his self is the source of beings.' } },
+                { verse_number: 6, sanskrit: 'यथाकाशस्थितो नित्यं वायुः सर्वत्रगो महान्। तथा सर्वाणि भूतानि मत्स्थानीत्युपधारय।।', transliteration: 'yathakasha-sthito nityam vayuh sarvatra-go mahan', explanations: { en: 'As the mighty wind always moves in space yet always remains in space — understand that all beings similarly remain in Krishna.' } },
+            ],
+            questions: [{ question_text: 'The wind-in-space analogy in verse 6 describes how beings exist in Krishna. What does this image convey about the relationship?', options: [{ text: 'That beings are trapped inside God like flies in amber', is_correct: false }, { text: 'That beings move freely and have their own activity, yet are entirely held within something vast that they can never exit — sustained without being controlled', is_correct: true }, { text: 'That God and the world are made of the same substance', is_correct: false }], explanation: 'The analogy is precise: the wind has its own movement, its own storms and stillness, yet it is entirely within the sky and the sky is in no way diminished by the wind\'s activity. Beings have their own reality and agency, yet all of it happens within something that encompasses and sustains them.', difficulty: 'application' }],
+        },
+        {
+            part_number: 2,
+            verse_start: 7,
+            verse_end: 10,
+            estimated_minutes: 3.5,
+            verses: [
+                { verse_number: 7, sanskrit: 'सर्वभूतानि कौन्तेय प्रकृतिं यान्ति मामिकाम्। कल्पक्षये पुनस्तानि कल्पादौ विसृजाम्यहम्।।', transliteration: 'sarva-bhutani kaunteya prakritim yanti mamikam', explanations: { en: 'At the end of the cosmic age, all beings return to Krishna\'s nature. At the beginning of the next, he sends them forth again.' } },
+                { verse_number: 8, sanskrit: 'प्रकृतिं स्वामवष्टभ्य विसृजामि पुनः पुनः। भूतग्राममिमं कृत्स्नमवशं प्रकृतेर्वशात्।।', transliteration: 'prakritim svam avashtabhya visrijami punah punah', explanations: { en: 'Taking hold of his own nature, he again and again sends forth this whole multitude of beings, helpless under the sway of nature.' } },
+                { verse_number: 9, sanskrit: 'न च मां तानि कर्माणि निबध्नन्ति धनञ्जय। उदासीनवदासीनमसक्तं तेषु कर्मसु।।', transliteration: 'na cha mam tani karmani nibadhnanti dhananjaya', explanations: { en: 'These actions do not bind Krishna — he sits like one who is indifferent, unattached to those actions.' } },
+                { verse_number: 10, sanskrit: 'मयाध्यक्षेण प्रकृतिः सूयते सचराचरम्। हेतुनानेन कौन्तेय जगद्विपरिवर्तते।।', transliteration: 'mayad hya kshena prakritih suyate sa-characharam', explanations: { en: 'With Krishna as the presiding authority, nature produces all moving and unmoving things. For this reason, the world revolves.' } },
+            ],
+            questions: [{ question_text: 'Krishna says he creates and dissolves the world repeatedly, yet is not bound by these actions. How can one be the cause of everything and yet be unaffected?', options: [{ text: 'It is impossible and the statement is contradictory', is_correct: false }, { text: 'Because his creative activity doesn\'t arise from desire or need — he acts as a free, unattached presence through which nature operates, rather than as an ego striving for results', is_correct: true }, { text: 'Because gods have special rules that humans don\'t', is_correct: false }], explanation: 'This is the same teaching as karma yoga applied to the divine itself. Action without ego-driven attachment doesn\'t bind — even cosmic-scale action. Krishna models what he teaches Arjuna: to act fully and freely without the grasping quality that creates bondage.', difficulty: 'application' }],
+        },
+        {
+            part_number: 3,
+            verse_start: 11,
+            verse_end: 15,
+            estimated_minutes: 4.5,
+            verses: [
+                { verse_number: 11, sanskrit: 'अवजानन्ति मां मूढा मानुषीं तनुमाश्रितम्। परं भावमजानन्तो मम भूतमहेश्वरम्।।', transliteration: 'avajananti mam mudha manushim tanum ashritam', explanations: { en: 'The foolish disregard Krishna when he appears in human form — not knowing his supreme nature as the great Lord of beings.' } },
+                { verse_number: 12, sanskrit: 'मोघाशा मोघकर्माणो मोघज्ञाना विचेतसः। राक्षसीमासुरीं चैव प्रकृतिं मोहिनीं श्रिताः।।', transliteration: 'mogha-sha mogha-karmano mogha-jnana vicheetasah', explanations: { en: 'Those who disregard him have vain hopes, vain actions, and vain knowledge — they are senseless, fallen into deluded, demoniac nature.' } },
+                { verse_number: 13, sanskrit: 'महात्मानस्तु मां पार्थ दैवीं प्रकृतिमाश्रिताः। भजन्त्यनन्यमनसो ज्ञात्वा भूतादिमव्ययम्।।', transliteration: 'mahatmanas tu mam partha daivim prakritim ashritah', explanations: { en: 'But the great souls, taking to the divine nature, worship Krishna with undivided mind — knowing him as the imperishable source of beings.' } },
+                { verse_number: 14, sanskrit: 'सततं कीर्तयन्तो मां यतन्तश्च दृढव्रताः। नमस्यन्तश्च मां भक्त्या नित्ययुक्ता उपासते।।', transliteration: 'satatam kirtayanto mam yatantash cha dridhavratah', explanations: { en: 'Always praising him, striving with firm vows, bowing to him with devotion — always absorbed, they worship him.' } },
+                { verse_number: 15, sanskrit: 'ज्ञानयज्ञेन चाप्यन्ये यजन्तो मामुपासते। एकत्वेन पृथक्त्वेन बहुधा विश्वतोमुखम्।।', transliteration: 'jnana-yajnena chapy anye yajanto mam upasate', explanations: { en: 'Others worship Krishna through the sacrifice of knowledge — as the One, as the separate, and as the many-formed facing everywhere.' } },
+            ],
+            questions: [{ question_text: 'Why do some people fail to recognize Krishna\'s divine nature when he appears in human form (verse 11)?', options: [{ text: 'Because it is impossible to recognize God in human form', is_correct: false }, { text: 'Because they judge by outer appearance and miss the inner reality — the very humanness that makes him accessible also makes him easy to dismiss as merely human', is_correct: true }, { text: 'Because Krishna deliberately hides himself', is_correct: false }], explanation: 'This verse speaks to a universal pattern: the sacred that appears in ordinary or human form is the easiest to overlook. The same accessibility that makes it relatable makes it dismissible to those looking for something more spectacular.', difficulty: 'application' }],
+        },
+        {
+            part_number: 4,
+            verse_start: 16,
+            verse_end: 21,
+            estimated_minutes: 4.5,
+            verses: [
+                { verse_number: 16, sanskrit: 'अहं क्रतुरहं यज्ञः स्वधाहमहमौषधम्। मन्त्रोऽहमहमेवाज्यमहमग्निरहं हुतम्।।', transliteration: 'aham kratur aham yajnah svadhaham aham aushadham', explanations: { en: 'Krishna is the Vedic rite, the sacrifice, the oblation to ancestors, the healing herb, the mantra, the clarified butter, the fire, and the offering.' } },
+                { verse_number: 17, sanskrit: 'पिताहमस्य जगतो माता धाता पितामहः। वेद्यं पवित्रमोङ्कार ऋक्साम यजुरेव च।।', transliteration: 'pitaham asya jagato mata dhata pitamahah', explanations: { en: 'He is the father, mother, sustainer, and grandfather of this world, the thing to be known, the purifier, the syllable Om, and the Rig, Sama, and Yajur Vedas.' } },
+                { verse_number: 18, sanskrit: 'गतिर्भर्ता प्रभुः साक्षी निवासः शरणं सुहृत्। प्रभवः प्रलयः स्थानं निधानं बीजमव्ययम्।।', transliteration: 'gatir bharta prabhuh sakshi nivasah sharanam suhrit', explanations: { en: 'He is the goal, the sustainer, the Lord, the witness, the abode, the refuge, the friend, the origin, the dissolution, the foundation, the treasure, and the imperishable seed.' } },
+                { verse_number: 19, sanskrit: 'तपाम्यहमहं वर्षं निगृह्णाम्युत्सृजामि च। अमृतं चैव मृत्युश्च सदसच्चाहमर्जुन।।', transliteration: 'tapamy aham aham varsham nigrihnamy utsrijami cha', explanations: { en: 'He gives heat, withholds and releases rain. He is immortality and death, being and non-being, Arjuna.' } },
+                { verse_number: 20, sanskrit: 'त्रैविद्या मां सोमपाः पूतपापा यज्ञैरिष्ट्वा स्वर्गतिं प्रार्थयन्ते। ते पुण्यमासाद्य सुरेन्द्रलोकमश्नन्ति दिव्यान्दिवि देवभोगान्।।', transliteration: 'trai-vidya mam soma-pah puta-papa yajnair ishtva svarga-tim prarthayante', explanations: { en: 'Those who know the three Vedas, drink the soma, and are purified of wrongdoing — worshiping Krishna through sacrifices and praying for heaven — reach the heavenly realm of Indra and enjoy divine pleasures.' } },
+                { verse_number: 21, sanskrit: 'ते तं भुक्त्वा स्वर्गलोकं विशालं क्षीणे पुण्ये मर्त्यलोकमाविशन्ति। एवं त्रयीधर्ममनुप्रपन्ना गतागतं कामकामा लभन्ते।।', transliteration: 'te tam bhuktva svarga-lokam vishalam kshine punye martya-lokam avishanti', explanations: { en: 'But having enjoyed that vast heavenly world, when their merit runs out, they re-enter the mortal world. Thus, following the path of the three Vedas and desiring pleasures, they attain only the going and returning.' } },
+            ],
+            questions: [{ question_text: 'Why does Krishna contrast those who seek heaven through sacrifice (returning after merit runs out) with those who seek him directly?', options: [{ text: 'To say that Vedic sacrifice is wrong', is_correct: false }, { text: 'To show that seeking finite rewards — even heavenly ones — produces finite results, while orienting toward the infinite source produces something that doesn\'t run out', is_correct: true }, { text: 'To claim that heaven doesn\'t exist', is_correct: false }], explanation: 'This is a teaching about the scope of one\'s aspiration. Heaven, in this context, is still a conditional, impermanent state — grand but not ultimate. Orienting toward the source rather than its products is what yields something lasting.', difficulty: 'application' }],
+        },
+        {
+            part_number: 5,
+            verse_start: 22,
+            verse_end: 25,
+            estimated_minutes: 3.5,
+            verses: [
+                { verse_number: 22, sanskrit: 'अनन्याश्चिन्तयन्तो मां ये जनाः पर्युपासते। तेषां नित्याभियुक्तानां योगक्षेमं वहाम्यहम्।।', transliteration: 'ananyash chintayanto mam ye janah paryupasate', explanations: { en: 'For those who worship Krishna with undivided devotion, thinking of nothing else, always absorbed — Krishna himself carries what they lack and preserves what they have.' } },
+                { verse_number: 23, sanskrit: 'येऽप्यन्यदेवताभक्ता यजन्ते श्रद्धयान्विताः। तेऽपि मामेव कौन्तेय यजन्त्यविधिपूर्वकम्।।', transliteration: 'ye\'py anya-devata-bhakta yajante shraddhayanvitah', explanations: { en: 'Even those who are devoted to other deities and worship with faith — even they worship Krishna, though not in the proper way.' } },
+                { verse_number: 24, sanskrit: 'अहं हि सर्वयज्ञानां भोक्ता च प्रभुरेव च। न तु मामभिजानन्ति तत्त्वेनातश्च्यवन्ति ते।।', transliteration: 'aham hi sarva-yajnanam bhokta cha prabhur eva cha', explanations: { en: 'For Krishna is the enjoyer and Lord of all sacrifices — but not knowing him in truth, people fall away from their practice.' } },
+                { verse_number: 25, sanskrit: 'यान्ति देवव्रता देवान्पितॄन्यान्ति पितृव्रताः। भूतानि यान्ति भूतेज्या यान्ति मद्याजिनोऽपि माम्।।', transliteration: 'yanti deva-vrata devan pitrin yanti pitri-vratah', explanations: { en: 'Worshipers of the gods go to the gods; worshipers of ancestors go to the ancestors; worshipers of spirits go to spirits; and those who worship Krishna come to Krishna.' } },
+            ],
+            questions: [{ question_text: 'Verse 22 says Krishna carries what his devotees need and preserves what they have. What kind of relationship is being described here?', options: [{ text: 'A transactional arrangement where devotion is exchanged for material blessings', is_correct: false }, { text: 'A relationship of genuine care — not unlike a parent or trusted friend who takes responsibility for those who have fully placed their trust in them, freeing them from anxiety about provision', is_correct: true }, { text: 'A guarantee of wealth and success for religious people', is_correct: false }], explanation: 'This verse describes the deepest quality of the bhakti relationship: when someone fully surrenders their concerns to the divine, the divine takes responsibility for their welfare. It\'s not a transaction but a relationship of complete trust, which is why "undivided devotion" is the condition.', difficulty: 'application' }],
+        },
+        {
+            part_number: 6,
+            verse_start: 26,
+            verse_end: 34,
+            estimated_minutes: 4.5,
+            verses: [
+                { verse_number: 26, sanskrit: 'पत्रं पुष्पं फलं तोयं यो मे भक्त्या प्रयच्छति। तदहं भक्त्युपहृतमश्नामि प्रयतात्मनः।।', transliteration: 'patram pushpam phalam toyam yo me bhaktya prayachchhati', explanations: { en: 'Whoever offers Krishna a leaf, a flower, a fruit, or water with devotion — that offering of love from a pure-hearted person, Krishna accepts.' } },
+                { verse_number: 27, sanskrit: 'यत्करोषि यदश्नासि यज्जुहोषि ददासि यत्। यत्तपस्यसि कौन्तेय तत्कुरुष्व मदर्पणम्।।', transliteration: 'yat karoshi yad ashnasi yaj juhoshi dadasi yat', explanations: { en: 'Whatever you do, whatever you eat, whatever you offer, whatever you give, whatever austerity you practice — do that as an offering to Krishna.' } },
+                { verse_number: 28, sanskrit: 'शुभाशुभफलैरेवं मोक्ष्यसे कर्मबन्धनैः। संन्यासयोगयुक्तात्मा विमुक्तो मामुपैष्यसि।।', transliteration: 'shubhashubha-phalair evam mokshyase karma-bandhanais', explanations: { en: 'By this you will be freed from the bonds of action, both good and bad results. With a self renounced and united with yoga, you will come to Krishna liberated.' } },
+                { verse_number: 29, sanskrit: 'समोऽहं सर्वभूतेषु न मे द्वेष्योऽस्ति न प्रियः। ये भजन्ति तु मां भक्त्या मयि ते तेषु चाप्यहम्।।', transliteration: 'samo\'ham sarva-bhuteshu na me dveshyo\'sti na priyah', explanations: { en: 'Krishna is equal to all beings — no one is hateful or dear to him. But those who worship him with devotion are in him, and he is also in them.' } },
+                { verse_number: 30, sanskrit: 'अपि चेत्सुदुराचारो भजते मामनन्यभाक्। साधुरेव स मन्तव्यः सम्यग्व्यवसितो हि सः।।', transliteration: 'api cet su-duracharo bhajate mam ananya-bhak', explanations: { en: 'Even if someone of very bad conduct worships Krishna with undivided devotion — they should be considered righteous, for they have resolved rightly.' } },
+                { verse_number: 31, sanskrit: 'क्षिप्रं भवति धर्मात्मा शश्वच्छान्तिं निगच्छति। कौन्तेय प्रतिजानीहि न मे भक्तः प्रणश्यति।।', transliteration: 'kshipram bhavati dharmatma shashvach-chhantim nigachchhati', explanations: { en: 'They quickly become righteous and attain lasting peace. Arjuna, know for certain: no devotee of Krishna is ever lost.' } },
+                { verse_number: 32, sanskrit: 'मां हि पार्थ व्यपाश्रित्य येऽपि स्युः पापयोनयः। स्त्रियो वैश्यास्तथा शूद्रास्तेऽपि यान्ति परां गतिम्।।', transliteration: 'mam hi partha vyapashritya ye\'pi syuh papa-yonayah', explanations: { en: 'Even those born of sinful wombs — women, Vaishyas, Shudras — taking refuge in Krishna, they too reach the supreme destination.' } },
+                { verse_number: 33, sanskrit: 'किं पुनर्ब्राह्मणाः पुण्या भक्ता राजर्षयस्तथा। अनित्यमसुखं लोकमिमं प्राप्य भजस्व माम्।।', transliteration: 'kim punar brahmanah punya bhakta rajarshyas tatha', explanations: { en: 'How much more then righteous Brahmins and devoted royal sages! Having come to this impermanent, joyless world, worship Krishna.' } },
+                { verse_number: 34, sanskrit: 'मन्मना भव मद्भक्तो मद्याजी मां नमस्कुरु। मामेवैष्यसि युक्त्वैवमात्मानं मत्परायणः।।', transliteration: 'man-mana bhava mad-bhakto mad-yaji mam namaskuru', explanations: { en: 'Fix your mind on Krishna, be devoted to him, worship him, bow to him. You will come to Krishna — having integrated the self in this way, with him as the supreme goal.' } },
+            ],
+            questions: [{ question_text: 'Verse 26 says Krishna accepts even a simple leaf or drop of water offered with devotion. What principle does this establish about devotion?', options: [{ text: 'That expensive offerings are unnecessary because God only cares about appearances', is_correct: false }, { text: 'That the sincerity and love behind an offering matter infinitely more than its material value — the smallest gift given from genuine devotion is received fully', is_correct: true }, { text: 'That vegetarian offerings are spiritually superior to other forms', is_correct: false }], explanation: 'This verse democratizes devotion completely. The divine is not impressed by grandeur — a leaf or a drop of water offered from a full heart is accepted as completely as any elaborate ritual. It is the quality of the inner offering, not the outer form, that matters.', difficulty: 'application' }],
+        },
+    ],
+};
+
+module.exports = chapter9;
