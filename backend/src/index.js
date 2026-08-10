@@ -4,6 +4,7 @@ const cors = require('cors');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
 
+const authRouter = require('./routes/auth');
 const usersRouter = require('./routes/users');
 const contentRouter = require('./routes/content');
 const readingRouter = require('./routes/reading');
@@ -29,6 +30,7 @@ app.use(limiter);
 
 // ── Routes ──
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
+app.use('/auth', authRouter);
 app.use('/users', usersRouter);
 app.use('/content', contentRouter);
 app.use('/reading', readingRouter);

@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS users (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
   name TEXT NOT NULL,
   email TEXT UNIQUE,
+  google_id TEXT UNIQUE,
   auth_provider TEXT DEFAULT 'email', -- 'email' | 'google' | 'apple' etc
   preferred_language TEXT NOT NULL DEFAULT 'en',   -- ISO-ish code: en, hi, ta, te, bn...
   state_id INT REFERENCES states(id),
@@ -36,6 +37,10 @@ CREATE TABLE IF NOT EXISTS users (
   last_read_date DATE,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+-- Column added after the table already existed in production — CREATE TABLE IF NOT EXISTS
+-- above won't touch a live table, so this keeps re-running schema.sql idempotent and safe.
+ALTER TABLE users ADD COLUMN IF NOT EXISTS google_id TEXT UNIQUE;
 
 CREATE INDEX IF NOT EXISTS idx_users_state ON users(state_id);
 CREATE INDEX IF NOT EXISTS idx_users_score ON users(total_score DESC);
