@@ -44,6 +44,15 @@ const chapter1 = {
                 ],
                 explanation: 'The Gita is framed as a story-within-a-story: Sanjaya narrates the entire battlefield conversation to the blind king Dhritarashtra using a divinely granted vision, which is why the whole text opens with his question.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'गीता की शुरुआत कृष्ण के बोलने से नहीं, बल्कि धृतराष्ट्र के प्रश्न पूछने से क्यों होती है?',
+                    options: [
+                        { text: 'पूरी कथा अंधे राजा को संजय द्वारा सुनाई जा रही है, जिन्हें युद्धभूमि देखने की दिव्य दृष्टि प्राप्त है', is_correct: true },
+                        { text: 'धृतराष्ट्र गीता के मुख्य पात्र हैं', is_correct: false },
+                        { text: 'यह पारंपरिक ग्रंथ में एक भूल है', is_correct: false },
+                    ],
+                    explanation: 'गीता को एक कथा-में-कथा के रूप में रचा गया है: संजय पूरी युद्धभूमि की बातचीत अंधे राजा धृतराष्ट्र को दिव्य दृष्टि के माध्यम से सुनाते हैं, इसीलिए पूरा ग्रंथ उनके प्रश्न से शुरू होता है।',
+                },
             }],
         },
         // Part 2: verses 4-6
@@ -81,6 +90,15 @@ const chapter1 = {
                 ],
                 explanation: 'Duryodhana\'s detailed listing of enemy warriors is a mix of anxiety and strategy - by naming the threat precisely to Drona, he is both sizing up the danger and trying to rally his own side\'s confidence.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'दुर्योधन का पांडव योद्धाओं को एक-एक करके गिनाने का क्या उद्देश्य है?',
+                    options: [
+                        { text: 'वह अपनी ही ताकत का बखान कर रहा है', is_correct: false },
+                        { text: 'वह खतरे को स्पष्ट रूप से नाम लेकर खुद को आश्वस्त करने और अपने सेनापति का हौसला बढ़ाने की कोशिश कर रहा है', is_correct: true },
+                        { text: 'वह पाला बदलने की योजना बना रहा है', is_correct: false },
+                    ],
+                    explanation: 'दुर्योधन द्वारा शत्रु योद्धाओं की विस्तृत सूची बेचैनी और रणनीति का मिश्रण है - द्रोण को सटीक रूप से खतरे के नाम बताकर, वह खतरे को आंक भी रहा है और अपने पक्ष का आत्मविश्वास भी बढ़ाने की कोशिश कर रहा है।',
+                },
             }],
         },
         // Part 3: verses 7-11
@@ -130,6 +148,15 @@ const chapter1 = {
                 ],
                 explanation: 'Bhishma is the grand patriarch and most senior commander on the Kaurava side - his safety symbolizes the stability of the entire army, which is why Duryodhana singles him out for special protection.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'दुर्योधन सबसे ज़्यादा भीष्म की रक्षा करने के लिए विशेष रूप से क्यों कहता है?',
+                    options: [
+                        { text: 'क्योंकि भीष्म सबसे वृद्ध और सम्मानित हैं, और उनकी सुरक्षा को पूरी सेना के मनोबल और रणनीति के केंद्र के रूप में देखा जाता है', is_correct: true },
+                        { text: 'क्योंकि भीष्म गुप्त रूप से पाला बदलना चाहते हैं', is_correct: false },
+                        { text: 'क्योंकि भीष्म सबसे कमज़ोर योद्धा हैं और उन्हें सुरक्षा चाहिए', is_correct: false },
+                    ],
+                    explanation: 'भीष्म कौरव पक्ष के सबसे वरिष्ठ कुलपुरुष और सेनापति हैं - उनकी सुरक्षा पूरी सेना की स्थिरता का प्रतीक है, इसीलिए दुर्योधन उन्हें विशेष सुरक्षा के लिए अलग से चुनता है।',
+                },
             }],
         },
         // Part 4: verses 12-19
@@ -197,6 +224,15 @@ const chapter1 = {
                 ],
                 explanation: 'Conch-blowing was a ceremonial declaration of readiness for war - once both sides sound their conches, the confrontation becomes formally unavoidable, which sets up the emotional weight of what happens next.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'युद्ध से पहले दोनों पक्षों द्वारा शंख बजाने का क्या महत्व है?',
+                    options: [
+                        { text: 'यह केवल एक संगीत परंपरा थी जिसका कोई गहरा अर्थ नहीं था', is_correct: false },
+                        { text: 'यह दोनों सेनाओं की युद्ध के लिए तत्परता और संकल्प की औपचारिक घोषणा करता है, जिससे तनाव अब वापस न लिया जा सकने वाला क्षण बन जाता है', is_correct: true },
+                        { text: 'यह सेनाओं के पीछे हटने का संकेत था', is_correct: false },
+                    ],
+                    explanation: 'शंख बजाना युद्ध के लिए तत्परता की एक औपचारिक घोषणा थी - एक बार जब दोनों पक्ष अपने शंख बजा देते हैं, तो टकराव औपचारिक रूप से अनिवार्य हो जाता है, जिससे आगे होने वाली घटनाओं का भावनात्मक महत्व स्थापित होता है।',
+                },
             }],
         },
         // Part 5: verses 20-27
@@ -264,6 +300,15 @@ const chapter1 = {
                 ],
                 explanation: 'Arjuna\'s request seems tactical at first, but it\'s actually what sets up the entire crisis of the chapter - by seeing his own relatives, teachers, and friends arrayed for battle, the war stops being abstract and becomes deeply personal.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'अर्जुन कृष्ण से रथ को अपनी सेना के पीछे नहीं, बल्कि दोनों सेनाओं के बीच रखने के लिए विशेष रूप से क्यों कहते हैं?',
+                    options: [
+                        { text: 'वे हमले की योजना बनाने के लिए एक बेहतर रणनीतिक स्थान चाहते थे', is_correct: false },
+                        { text: 'वे स्वयं देखना चाहते थे कि वे किससे लड़ेंगे - और यही वह क्षण है जब अपने ही परिवार को पहचानकर उनका भावनात्मक संकट शुरू होता है', is_correct: true },
+                        { text: 'यह हर युद्ध से पहले किया जाने वाला एक धार्मिक अनुष्ठान था', is_correct: false },
+                    ],
+                    explanation: 'अर्जुन का अनुरोध शुरू में रणनीतिक लगता है, लेकिन वास्तव में यही पूरे अध्याय के संकट की नींव रखता है - अपने ही संबंधियों, गुरुओं और मित्रों को युद्ध के लिए खड़ा देखकर, युद्ध अब एक अमूर्त विचार नहीं रह जाता, बल्कि गहराई से व्यक्तिगत बन जाता है।',
+                },
             }],
         },
         // Part 6: verses 28-31
@@ -307,6 +352,15 @@ const chapter1 = {
                 ],
                 explanation: 'The vivid physical description - trembling, dry mouth, weakening body - signals that Arjuna\'s conflict is not simple battlefield nerves, but a profound moral crisis that the rest of the Gita will need to resolve.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'इस अंश में अर्जुन के शारीरिक लक्षणों का क्या महत्व है?',
+                    options: [
+                        { text: 'वे बताते हैं कि वे यात्रा से बस शारीरिक रूप से थके हुए हैं', is_correct: false },
+                        { text: 'वे दिखाते हैं कि उनका नैतिक और भावनात्मक संकट इतना गहरा है कि इसका वास्तविक शारीरिक असर पड़ रहा है - यह केवल झिझक नहीं, बल्कि सच्ची पीड़ा है', is_correct: true },
+                        { text: 'वे केवल एक साहित्यिक युक्ति हैं जिनका कोई वास्तविक अर्थ नहीं है', is_correct: false },
+                    ],
+                    explanation: 'यह जीवंत शारीरिक वर्णन - कंपन, सूखा मुँह, कमज़ोर होता शरीर - बताता है कि अर्जुन का संघर्ष सामान्य युद्धभूमि की घबराहट नहीं, बल्कि एक गहन नैतिक संकट है, जिसे गीता का शेष भाग सुलझाएगा।',
+                },
             }],
         },
         // Part 7: verses 32-35
@@ -350,6 +404,15 @@ const chapter1 = {
                 ],
                 explanation: 'Arjuna isn\'t expressing fear of losing - he\'s raising a values question: what is the point of gaining a kingdom if the people you\'d share it with are the ones you must kill to get it?',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'इस अंश में अर्जुन के तर्क का मूल क्या है?',
+                    options: [
+                        { text: 'उन्हें युद्ध हारने का डर है', is_correct: false },
+                        { text: 'वे सवाल उठाते हैं कि क्या कोई भी विजय, धन या सत्ता तब सार्थक है जब उसके लिए उन्हीं लोगों को नष्ट करना पड़े जिनके लिए वह सब हासिल किया जा रहा है', is_correct: true },
+                        { text: 'वे दुर्योधन के साथ संधि करना चाहते हैं', is_correct: false },
+                    ],
+                    explanation: 'अर्जुन हारने का डर व्यक्त नहीं कर रहे - वे एक मूल्यों से जुड़ा प्रश्न उठा रहे हैं: राज्य पाने का क्या फायदा, अगर जिनके साथ उसे बाँटना है, उन्हीं को पाने के लिए मारना पड़े?',
+                },
             }],
         },
         // Part 8: verses 36-39
@@ -393,6 +456,15 @@ const chapter1 = {
                 ],
                 explanation: 'Arjuna is making a moral argument, not a strategic one - he suggests that knowing better creates a responsibility to act better, which is part of why he feels so torn about proceeding with the war.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'इस अंश में अर्जुन अपने पक्ष और दुर्योधन के पक्ष के बीच क्या भेद बता रहे हैं?',
+                    options: [
+                        { text: 'वे दावा करते हैं कि उनका पक्ष युद्ध में ज़्यादा मज़बूत है', is_correct: false },
+                        { text: 'वे तर्क देते हैं कि भले ही दूसरा पक्ष लोभ में अंधा होकर इस युद्ध की बुराई नहीं देख पा रहा, उनका पक्ष बेहतर जानता है और उसे उसी समझ के अनुसार काम करना चाहिए', is_correct: true },
+                        { text: 'वे दावा करते हैं कि दूसरे पक्ष ने अनुचित तरीके से संघर्ष शुरू किया', is_correct: false },
+                    ],
+                    explanation: 'अर्जुन एक नैतिक तर्क दे रहे हैं, रणनीतिक नहीं - वे सुझाव देते हैं कि बेहतर जानना बेहतर कार्य करने की ज़िम्मेदारी पैदा करता है, और यही एक कारण है कि युद्ध जारी रखने को लेकर वे इतने विचलित महसूस करते हैं।',
+                },
             }],
         },
         // Part 9: verses 40-44
@@ -442,6 +514,15 @@ const chapter1 = {
                 ],
                 explanation: 'Arjuna broadens his objection beyond his personal grief - he\'s now arguing that the war would damage the social and moral fabric that generations of family tradition have built, a concern rooted in his own time and worldview.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'इन श्लोकों (40-44) में अर्जुन किस तरह का तर्क दे रहे हैं?',
+                    options: [
+                        { text: 'सैनिकों की संख्या के बारे में विशुद्ध सैन्य तर्क', is_correct: false },
+                        { text: 'एक सामाजिक और नैतिक तर्क - कि परिवार का नाश उन परंपराओं और मूल्यों को नष्ट कर देता है जो पूरे समुदाय को जोड़े रखते हैं', is_correct: true },
+                        { text: 'युद्ध की लागत के बारे में एक आर्थिक तर्क', is_correct: false },
+                    ],
+                    explanation: 'अर्जुन अपनी व्यक्तिगत पीड़ा से आगे बढ़कर अपनी आपत्ति को व्यापक बनाते हैं - अब वे तर्क दे रहे हैं कि यह युद्ध उस सामाजिक और नैतिक ताने-बाने को नुकसान पहुँचाएगा जिसे पीढ़ियों की पारिवारिक परंपरा ने बनाया है, यह चिंता उनके अपने समय और दृष्टिकोण में निहित है।',
+                },
             }],
         },
         // Part 10: verses 45-47 (final part of chapter 1)
@@ -479,6 +560,15 @@ const chapter1 = {
                 ],
                 explanation: 'Chapter 1 ends at Arjuna\'s lowest point - paralyzed by grief and moral confusion. This crisis is exactly what creates the need for the dialogue that unfolds through the rest of the Gita, where Krishna responds to each of Arjuna\'s doubts.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'अध्याय 1 का अंत कैसे होता है, और यह गीता के शेष भाग के लिए क्यों महत्वपूर्ण है?',
+                    options: [
+                        { text: 'अर्जुन एक छोटी सी झड़प जीतकर आत्मविश्वास हासिल करते हैं', is_correct: false },
+                        { text: 'अर्जुन निराशा में डूब जाते हैं और लड़ने से इनकार कर देते हैं, जिससे अध्याय 2 में आने वाली कृष्ण की शिक्षा की आवश्यकता पैदा होती है', is_correct: true },
+                        { text: 'अध्याय का अंत युद्ध पहले ही समाप्त हो जाने के साथ होता है', is_correct: false },
+                    ],
+                    explanation: 'अध्याय 1 अर्जुन के सबसे निराशाजनक क्षण पर समाप्त होता है - शोक और नैतिक उलझन से स्तब्ध। यही संकट गीता के शेष भाग में होने वाले संवाद की आवश्यकता पैदा करता है, जहाँ कृष्ण अर्जुन की हर शंका का उत्तर देते हैं।',
+                },
             }],
         },
     ],

@@ -49,6 +49,15 @@ const chapter3 = {
                 ],
                 explanation: 'Arjuna picked up a real tension in Krishna\'s teaching - Chapter 2 spoke highly of steady wisdom, yet Krishna keeps urging action. Chapter 3 is Krishna\'s direct answer to this apparent contradiction.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'अध्याय 3 की शुरुआत में अर्जुन जो मूल उलझन व्यक्त करते हैं, वह क्या है?',
+                    options: [
+                        { text: 'वे युद्ध के नियम नहीं समझते', is_correct: false },
+                        { text: 'कृष्ण ने अध्याय 2 में ज्ञान की प्रशंसा की, पर अब उन्हें कर्म करने को कह रहे हैं - अर्जुन जानना चाहते हैं कि कौन सा मार्ग वाकई सबसे अच्छे परिणाम की ओर ले जाता है', is_correct: true },
+                        { text: 'वे एक अलग सारथी चुनना चाहते हैं', is_correct: false },
+                    ],
+                    explanation: 'अर्जुन ने कृष्ण की शिक्षा में एक वास्तविक तनाव पकड़ा - अध्याय 2 में स्थिर बुद्धि की प्रशंसा की गई, फिर भी कृष्ण लगातार कर्म करने पर ज़ोर दे रहे हैं। अध्याय 3 इसी प्रतीत होने वाले विरोधाभास का कृष्ण का सीधा उत्तर है।',
+                },
             }],
         },
         // Part 2: verses 5-9 (Why action is unavoidable; action as yajna)
@@ -98,6 +107,15 @@ const chapter3 = {
                 ],
                 explanation: 'Krishna is pointing at something subtle - the real work is internal. Stopping action while the mind still churns with desire is just performance, not genuine practice.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'श्लोक 6 में कृष्ण बाहरी त्याग और आंतरिक त्याग के बीच जो भेद बताते हैं, उसका क्या अर्थ है?',
+                    options: [
+                        { text: 'वे कह रहे हैं कि समाज छोड़ने वाले साधु हमेशा पाखंडी होते हैं', is_correct: false },
+                        { text: 'सच्चा त्याग मानसिक आसक्ति को छोड़ने के बारे में है, केवल शारीरिक कर्म रोकने के बारे में नहीं - जो व्यक्ति चुपचाप बैठा है पर मन में लालसा बनाए हुए है, उसने वास्तव में कुछ भी त्यागा नहीं है', is_correct: true },
+                        { text: 'उनका मतलब है कि अर्जुन को भीतर जो भी महसूस हो, उसकी परवाह किए बिना लड़ते रहना चाहिए', is_correct: false },
+                    ],
+                    explanation: 'कृष्ण एक सूक्ष्म बात की ओर इशारा कर रहे हैं - असली काम भीतर होता है। मन में इच्छा उबलती रहते हुए कर्म रोक देना केवल दिखावा है, सच्चा अभ्यास नहीं।',
+                },
             }],
         },
         // Part 3: verses 10-13 (The cosmic cycle of yajna)
@@ -141,6 +159,15 @@ const chapter3 = {
                 ],
                 explanation: 'The concept of yajna here goes beyond ritual - it\'s a model of how all life is sustained through reciprocal giving. Selfishness breaks the cycle; selfless contribution sustains it.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'इस अंश में यज्ञ की अवधारणा के माध्यम से कृष्ण जो मूल सिद्धांत सिखा रहे हैं, वह क्या है?',
+                    options: [
+                        { text: 'कि अग्नि अनुष्ठान करना पूजा का एकमात्र वैध रूप है', is_correct: false },
+                        { text: 'कि जीवन देने और पाने के एक परस्पर-जुड़े चक्र के रूप में चलता है - स्वार्थी ढंग से कर्म करना इस चक्र को तोड़ता है, जबकि स्वतंत्र रूप से योगदान देना स्वयं सहित सब कुछ बनाए रखता है', is_correct: true },
+                        { text: 'कि केवल ब्राह्मण ही इस चक्र में भाग ले सकते हैं', is_correct: false },
+                    ],
+                    explanation: 'यहाँ यज्ञ की अवधारणा कर्मकांड से आगे जाती है - यह दिखाती है कि सारा जीवन पारस्परिक देने से कैसे टिका रहता है। स्वार्थ इस चक्र को तोड़ता है; निःस्वार्थ योगदान इसे बनाए रखता है।',
+                },
             }],
         },
         // Part 4: verses 14-17 (The cosmic chain; the self-realized person)
@@ -184,6 +211,15 @@ const chapter3 = {
                 ],
                 explanation: 'This verse isn\'t a contradiction - it describes the rare person who has transcended the need to act for personal gain or fulfillment. They may still act, but there\'s no compulsion driving them. Most people aren\'t there yet, which is why action-as-offering is the path Krishna recommends.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'श्लोक 17 पहले दिए गए इस संदेश से विरोधाभासी क्यों लगता है कि सभी को कर्म करना चाहिए?',
+                    options: [
+                        { text: 'यह वास्तव में ग्रंथ में एक भूल है', is_correct: false },
+                        { text: 'यह एक अलग प्रकार के व्यक्ति का वर्णन करता है - जिसने सच में आत्म-साक्षात्कार पा लिया है, वह अब दायित्व या इच्छा से कर्म नहीं करता, पर पूर्णता की अवस्था से स्वतंत्र रूप से कर्म कर सकता है', is_correct: true },
+                        { text: 'इसका मतलब है कि आलसी लोग आध्यात्मिक रूप से उन्नत होते हैं', is_correct: false },
+                    ],
+                    explanation: 'यह श्लोक विरोधाभास नहीं है - यह उस दुर्लभ व्यक्ति का वर्णन करता है जो व्यक्तिगत लाभ या तृप्ति के लिए कर्म करने की आवश्यकता से परे जा चुका है। वह फिर भी कर्म कर सकता है, पर उसे कोई बाध्यता प्रेरित नहीं करती। अधिकतर लोग अभी वहाँ नहीं पहुँचे हैं, इसीलिए कृष्ण अर्पण-भाव से कर्म करने का मार्ग सुझाते हैं।',
+                },
             }],
         },
         // Part 5: verses 18-22 (King Janaka; Krishna's own example)
@@ -233,6 +269,15 @@ const chapter3 = {
                 ],
                 explanation: 'This is a powerful argument: Krishna himself has nothing to gain from action, yet he acts. The reason? Leaders set examples, and if someone in a position of influence stopped acting, it would justify inaction in others and cause harm to the world.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'श्लोक 22 में कृष्ण अपना ही उदाहरण क्यों देते हैं?',
+                    options: [
+                        { text: 'अपनी दिव्य स्थिति दिखाने के लिए', is_correct: false },
+                        { text: 'यह दिखाने के लिए कि जिसे बिल्कुल कुछ भी पाना बाकी नहीं है, वह भी कर्म करता है - क्योंकि प्रभावशाली स्थिति में बैठे व्यक्ति की निष्क्रियता आस-पास सभी को नुकसान पहुँचाएगी', is_correct: true },
+                        { text: 'यह समझाने के लिए कि देवताओं को मानव नियमों का पालन क्यों नहीं करना पड़ता', is_correct: false },
+                    ],
+                    explanation: 'यह एक शक्तिशाली तर्क है: कृष्ण को स्वयं कर्म से कुछ भी प्राप्त नहीं होना है, फिर भी वे कर्म करते हैं। कारण? नेता उदाहरण स्थापित करते हैं, और यदि प्रभावशाली स्थिति में कोई व्यक्ति कर्म करना बंद कर दे, तो इससे दूसरों की निष्क्रियता को औचित्य मिल जाएगा और संसार को हानि पहुँचेगी।',
+                },
             }],
         },
         // Part 6: verses 23-29 (The wise vs the unwise; acting without disturbing others)
@@ -294,6 +339,15 @@ const chapter3 = {
                 ],
                 explanation: 'This is a teaching about meeting people where they are. Prematurely sharing deep philosophical truths with someone not ready for them can be destabilizing - the wise lead by example and encourage skillful action rather than upending others\' frameworks.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'कृष्ण यह क्यों कहते हैं कि ज्ञानी को उन लोगों को विचलित नहीं करना चाहिए जो अभी भी कर्म से आसक्त हैं (श्लोक 26)?',
+                    options: [
+                        { text: 'क्योंकि अज्ञानी लोग खतरनाक होते हैं और उनसे बचना चाहिए', is_correct: false },
+                        { text: 'क्योंकि अचानक किसी से यह कहना कि "आत्मा कर्म नहीं करती", जबकि वह इस समझ के लिए तैयार नहीं है, उसे भ्रमित और स्तब्ध कर सकता है - पहले सही कर्म को प्रोत्साहित करना बेहतर है', is_correct: true },
+                        { text: 'क्योंकि कर्म हमेशा ज्ञान से अधिक महत्वपूर्ण है', is_correct: false },
+                    ],
+                    explanation: 'यह शिक्षा लोगों को उनकी जिस अवस्था में हैं वहीं से मिलने के बारे में है। जो व्यक्ति गहरे दार्शनिक सत्यों के लिए तैयार नहीं है, उसके साथ समय से पहले उन्हें साझा करना अस्थिर करने वाला हो सकता है - ज्ञानी उदाहरण से नेतृत्व करते हैं और दूसरों के ढाँचे को उलटने के बजाय कुशल कर्म को प्रोत्साहित करते हैं।',
+                },
             }],
         },
         // Part 7: verses 30-35 (Surrender actions; svadharma)
@@ -349,6 +403,15 @@ const chapter3 = {
                 ],
                 explanation: 'Svadharma isn\'t just about caste roles in a rigid sense - at its core it\'s the principle that acting in alignment with your genuine nature produces better results than mimicking a path that doesn\'t fit you, even if that other path looks more appealing from the outside.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'श्लोक 35 की "स्वधर्म" (अपने कर्तव्य) की शिक्षा व्यवहार में क्या अर्थ रखती है?',
+                    options: [
+                        { text: 'कि लोगों को कभी नए कौशल सीखने या अपनी जीवनशैली बदलने की कोशिश नहीं करनी चाहिए', is_correct: false },
+                        { text: 'कि अपने ही स्वभाव और भूमिका के अनुसार सच्चाई से जीना - भले ही अपूर्ण ढंग से - किसी और के मार्ग की पूर्ण नकल करने से बेहतर है, जो मार्ग आपके अनुकूल नहीं है', is_correct: true },
+                        { text: 'कि जाति व्यवस्था स्थायी रूप से तय है और बदल नहीं सकती', is_correct: false },
+                    ],
+                    explanation: 'स्वधर्म केवल कठोर अर्थ में जाति-भूमिकाओं के बारे में नहीं है - इसका मूल सिद्धांत यह है कि अपने वास्तविक स्वभाव के अनुरूप कर्म करना, किसी ऐसे मार्ग की नकल करने से बेहतर परिणाम देता है जो आपके अनुकूल नहीं है, भले ही वह मार्ग बाहर से अधिक आकर्षक क्यों न लगे।',
+                },
             }],
         },
         // Part 8: verses 36-40 (Desire and anger as the enemy)
@@ -398,6 +461,15 @@ const chapter3 = {
                 ],
                 explanation: 'The "enemy" framing isn\'t about moralizing - it\'s about how desire operates. It actively clouds judgment at every level (senses, mind, intellect), which is why Krishna treats it as something to understand and overcome rather than just balance.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'इच्छा को केवल संतुलित करने योग्य चीज़ के बजाय "शत्रु" क्यों बताया गया है?',
+                    options: [
+                        { text: 'क्योंकि गीता सिखाती है कि हर सुख पापपूर्ण है', is_correct: false },
+                        { text: 'क्योंकि अनियंत्रित इच्छा सक्रिय रूप से आपकी अपनी स्पष्टता के विरुद्ध काम करती है - यह आपके विवेक को उसके स्रोत (इंद्रियों, मन, बुद्धि) पर ही ढक देती है और आपको अपनी बेहतर समझ के विरुद्ध कार्य करने पर मजबूर करती है', is_correct: true },
+                        { text: 'क्योंकि वैदिक परंपरा में किसी भी चीज़ की इच्छा करना वर्जित है', is_correct: false },
+                    ],
+                    explanation: '"शत्रु" कहना नैतिकता सिखाने के लिए नहीं है - यह इस बारे में है कि इच्छा कैसे काम करती है। यह हर स्तर (इंद्रिय, मन, बुद्धि) पर विवेक को सक्रिय रूप से धुँधला करती है, इसीलिए कृष्ण इसे केवल संतुलित करने के बजाय समझने और पार करने वाली चीज़ मानते हैं।',
+                },
             }],
         },
         // Part 9: verses 41-43 (How to overcome desire; conclusion)
@@ -435,6 +507,15 @@ const chapter3 = {
                 ],
                 explanation: 'Krishna\'s strategy is hierarchical rather than forceful - instead of just suppressing desire at the level of action, he says to work from a higher level. The Self (beyond intellect) can govern the intellect, which governs the mind, which governs the senses. It\'s grounding upward rather than pushing down.',
                 difficulty: 'application',
+                hi: {
+                    question_text: 'अंतिम श्लोकों में कृष्ण इच्छा पर विजय पाने के लिए अर्जुन को जो व्यावहारिक रणनीति देते हैं, वह क्या है?',
+                    options: [
+                        { text: 'केवल इच्छाशक्ति के बल पर भावनाओं को दबाना', is_correct: false },
+                        { text: 'इंद्रिय → मन → बुद्धि → आत्मा के पदानुक्रम को समझना, और निचले स्तरों को नियंत्रित करने के लिए ऊँचे स्तरों का उपयोग करना - अंततः बुद्धि से भी परे आत्मा में स्थिर होना', is_correct: true },
+                        { text: 'उन सभी स्थितियों से बचना जहाँ इच्छा उत्पन्न हो सकती है', is_correct: false },
+                    ],
+                    explanation: 'कृष्ण की रणनीति बलपूर्वक नहीं बल्कि पदानुक्रमिक है - कर्म के स्तर पर ही इच्छा को दबाने के बजाय, वे ऊँचे स्तर से काम करने को कहते हैं। आत्मा (बुद्धि से भी परे) बुद्धि को नियंत्रित कर सकती है, जो मन को नियंत्रित करती है, जो इंद्रियों को नियंत्रित करती है। यह ऊपर से आधार बनाना है, नीचे से दबाना नहीं।',
+                },
             }],
         },
     ],

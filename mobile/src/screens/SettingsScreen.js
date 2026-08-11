@@ -16,10 +16,16 @@ const C = {
   textMuted: '#7A5C34', goldBorder: 'rgba(212,175,55,0.28)', danger: '#FF6B6B',
 };
 
+const LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'hi', label: 'हिन्दी' },
+];
+
 const STRINGS = {
   en: {
     title: 'Settings',
     readerFallback: 'Reader',
+    languageRow: 'Language',
     restartRow: 'Restart reading from the beginning',
     confirmText: "This clears your streak, score, and reading history. This can't be undone.",
     cancel: 'Cancel',
@@ -29,6 +35,7 @@ const STRINGS = {
   hi: {
     title: 'सेटिंग्स',
     readerFallback: 'पाठक',
+    languageRow: 'भाषा',
     restartRow: 'शुरुआत से पढ़ाई फिर से शुरू करें',
     confirmText: 'इससे आपकी स्ट्रीक, स्कोर और पढ़ाई का इतिहास मिट जाएगा। यह वापस नहीं किया जा सकता।',
     cancel: 'रद्द करें',
@@ -37,12 +44,23 @@ const STRINGS = {
   },
 };
 
-export default function SettingsScreen({ userId, initialUser, lang, onBack, onLogout, onResetProgress }) {
+export default function SettingsScreen({ userId, initialUser, lang, onBack, onLogout, onResetProgress, onChangeLanguage }) {
   const [user, setUser] = useState(initialUser || null);
   const [loading, setLoading] = useState(!initialUser);
   const [confirmingReset, setConfirmingReset] = useState(false);
   const [resetting, setResetting] = useState(false);
+  const [changingLang, setChangingLang] = useState(false);
   const t = STRINGS[lang] || STRINGS.en;
+
+  const handleSelectLanguage = async (code) => {
+    if (code === lang || changingLang) return;
+    setChangingLang(true);
+    try {
+      await onChangeLanguage(code);
+    } finally {
+      setChangingLang(false);
+    }
+  };
 
   const load = useCallback(async () => {
     try {
@@ -101,6 +119,33 @@ export default function SettingsScreen({ userId, initialUser, lang, onBack, onLo
               </View>
               <Text style={s.accountName}>{user?.name || t.readerFallback}</Text>
               {!!user?.email && <Text style={s.accountEmail}>{user.email}</Text>}
+            </View>
+
+            {/* ── Language ── */}
+            <View style={s.section}>
+              <View style={s.languageHeader}>
+                <Ionicons name="language-outline" size={19} color={C.textSecond} />
+                <Text style={s.rowText}>{t.languageRow}</Text>
+                {changingLang && <ActivityIndicator color={C.gold} size="small" />}
+              </View>
+              <View style={s.languageOptions}>
+                {LANGUAGES.map((l) => (
+                  <TouchableOpacity
+                    key={l.code}
+                    style={[s.languagePill, lang === l.code && s.languagePillActive]}
+                    onPress={() => handleSelectLanguage(l.code)}
+                    disabled={changingLang}
+                    activeOpacity={0.85}
+                  >
+                    <Text style={[s.languagePillText, lang === l.code && s.languagePillTextActive]}>
+                      {l.label}
+                    </Text>
+                    {lang === l.code && (
+                      <Ionicons name="checkmark-circle" size={15} color={C.bg} style={{ marginLeft: 6 }} />
+                    )}
+                  </TouchableOpacity>
+                ))}
+              </View>
             </View>
 
             {/* ── Options ── */}
@@ -182,6 +227,16 @@ const s = StyleSheet.create({
   },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingVertical: 16 },
   rowText: { flex: 1, fontSize: 14, color: C.textPrimary, fontWeight: '600' },
+
+  languageHeader: { flexDirection: 'row', alignItems: 'center', gap: 12, paddingHorizontal: 16, paddingTop: 16 },
+  languageOptions: { flexDirection: 'row', gap: 10, padding: 16, paddingTop: 12 },
+  languagePill: {
+    flexDirection: 'row', alignItems: 'center', paddingHorizontal: 16, paddingVertical: 10,
+    borderRadius: 20, borderWidth: 1, borderColor: C.goldBorder,
+  },
+  languagePillActive: { backgroundColor: C.gold, borderColor: C.gold },
+  languagePillText: { fontSize: 13, fontWeight: '600', color: C.textSecond },
+  languagePillTextActive: { color: C.bg },
 
   confirmBox: { padding: 16 },
   confirmText: { fontSize: 13, color: C.textSecond, lineHeight: 19, marginBottom: 14 },

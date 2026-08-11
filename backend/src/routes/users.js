@@ -15,12 +15,17 @@ router.get('/states', async (req, res) => {
   }
 });
 
-// PATCH /users/:id - save onboarding preferences onto the account created by /auth/google
+// PATCH /users/:id - save onboarding preferences, or a later partial change (e.g. just
+// language from Settings) onto the account created by /auth/google. COALESCE means an
+// omitted field is left untouched rather than wiped to null.
 router.patch('/:id', async (req, res) => {
   const { preferredLanguage, stateId, dailyPace } = req.body;
   try {
     const result = await pool.query(
-      `UPDATE users SET preferred_language = $1, state_id = $2, daily_pace = $3
+      `UPDATE users SET
+         preferred_language = COALESCE($1, preferred_language),
+         state_id = COALESCE($2, state_id),
+         daily_pace = COALESCE($3, daily_pace)
        WHERE id = $4
        RETURNING id, name, preferred_language, state_id, daily_pace, streak_count, total_score`,
       [preferredLanguage, stateId, dailyPace, req.params.id]

@@ -90,6 +90,12 @@ export default function App() {
     setScreen('home');
   };
 
+  const handleChangeLanguage = async (newLang) => {
+    await api.updateUserPrefs(userId, { preferredLanguage: newLang });
+    setCachedUser(null);  // stale cache still has the old preferred_language
+    setLang(newLang);
+  };
+
   const handleBegin = () => setScreen('todayChoice');
   const handleBrowse = () => setScreen('browse');
   const handleBackFromBrowse = () => setScreen('home');
@@ -169,6 +175,7 @@ export default function App() {
           onBack={handleBackFromSettings}
           onLogout={handleLogout}
           onResetProgress={handleResetProgress}
+          onChangeLanguage={handleChangeLanguage}
         />
       )}
       {screen === 'browse' && (
