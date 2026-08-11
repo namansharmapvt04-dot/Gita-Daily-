@@ -8,11 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 import api from '../api/client';
 
 const LANGUAGES = [
-  { code: 'en', label: 'English', sub: 'English' },
-  { code: 'hi', label: 'हिन्दी', sub: 'Hindi' },
-  { code: 'ta', label: 'தமிழ்', sub: 'Tamil' },
-  { code: 'te', label: 'తెలుగు', sub: 'Telugu' },
-  { code: 'bn', label: 'বাংলা', sub: 'Bengali' },
+  { code: 'en', label: 'English', sub: 'English', available: true },
+  { code: 'hi', label: 'हिन्दी', sub: 'Hindi', available: true },
+  { code: 'ta', label: 'தமிழ்', sub: 'Tamil', available: false },
+  { code: 'te', label: 'తెలుగు', sub: 'Telugu', available: false },
+  { code: 'bn', label: 'বাংলা', sub: 'Bengali', available: false },
 ];
 
 const PACE_OPTIONS = [
@@ -23,7 +23,7 @@ const PACE_OPTIONS = [
 
 const STEPS = 4;
 
-export default function OnboardingScreen({ signupData, onComplete }) {
+export default function OnboardingScreen({ userId, onComplete }) {
   const [step, setStep] = useState(1);
   const [language, setLanguage] = useState(null);
   const [states, setStates] = useState([]);
@@ -49,15 +49,12 @@ export default function OnboardingScreen({ signupData, onComplete }) {
     setSubmitting(true);
     setSubmitError(null);
     try {
-      const user = await api.createUser({
-        name: signupData?.name || 'Reader',
-        email: signupData?.email,
-        password: signupData?.password,
+      await api.updateUserPrefs(userId, {
         preferredLanguage: language,
         stateId: selectedState.id,
         dailyPace: pace,
       });
-      onComplete(user.id);
+      onComplete();
     } catch (e) {
       setSubmitError(e.message);
       setSubmitting(false);
@@ -119,15 +116,31 @@ export default function OnboardingScreen({ signupData, onComplete }) {
                 {LANGUAGES.map((lang) => (
                   <TouchableOpacity
                     key={lang.code}
-                    style={[s.optionRow, language === lang.code && s.optionSelected]}
-                    onPress={() => { setLanguage(lang.code); setTimeout(() => setStep(2), 180); }}
-                    activeOpacity={0.8}
+                    style={[
+                      s.optionRow,
+                      language === lang.code && s.optionSelected,
+                      !lang.available && s.optionDisabled,
+                    ]}
+                    onPress={() => {
+                      if (!lang.available) return;
+                      setLanguage(lang.code);
+                      setTimeout(() => setStep(2), 180);
+                    }}
+                    activeOpacity={lang.available ? 0.8 : 1}
                   >
                     <View style={{ flex: 1 }}>
-                      <Text style={[s.optionText, language === lang.code && s.optionTextSelected]}>{lang.label}</Text>
+                      <Text style={[
+                        s.optionText,
+                        language === lang.code && s.optionTextSelected,
+                        !lang.available && s.optionTextDisabled,
+                      ]}>{lang.label}</Text>
                       <Text style={s.optionSub}>{lang.sub}</Text>
                     </View>
-                    {language === lang.code && (
+                    {!lang.available ? (
+                      <View style={s.comingSoonBadge}>
+                        <Text style={s.comingSoonText}>Coming soon</Text>
+                      </View>
+                    ) : language === lang.code && (
                       <Ionicons name="checkmark-circle" size={20} color="#D4AF37" />
                     )}
                   </TouchableOpacity>
@@ -292,9 +305,16 @@ const s = StyleSheet.create({
     padding: 16,
   },
   optionSelected: { borderColor: '#D4AF37', backgroundColor: 'rgba(212,175,55,0.10)' },
+  optionDisabled: { opacity: 0.45 },
   optionText: { fontSize: 15, color: '#FFF8F0', fontWeight: '500' },
   optionTextSelected: { color: '#D4AF37' },
+  optionTextDisabled: { color: '#C9A96E' },
   optionSub: { fontSize: 12, color: '#7A5C34', marginTop: 2 },
+  comingSoonBadge: {
+    paddingHorizontal: 10, paddingVertical: 4, borderRadius: 20,
+    backgroundColor: 'rgba(212,175,55,0.12)', borderWidth: 1, borderColor: 'rgba(212,175,55,0.25)',
+  },
+  comingSoonText: { fontSize: 10, fontWeight: '700', color: '#C9A96E', letterSpacing: 0.3 },
   paceCard: {
     flexDirection: 'row', alignItems: 'center', gap: 14,
     backgroundColor: 'rgba(255,248,240,0.05)', borderRadius: 14,
