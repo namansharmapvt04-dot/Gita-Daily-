@@ -11,13 +11,47 @@ function initials(name = '') {
   return name.split(' ').map(p => p[0]).join('').slice(0, 2).toUpperCase();
 }
 
-export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onBrowse }) {
+const STRINGS = {
+  en: {
+    loadError: "Couldn't load your dashboard.",
+    tryAgain: 'Try again',
+    tagline: 'Daily Wisdom from Krishna',
+    greeting: 'Jai Shri Krishna,',
+    todayBadge: 'TODAY',
+    readyTitle: 'Ready when you are',
+    continueSub: 'Continue your Gita journey',
+    beginReading: 'Begin Reading',
+    globalRank: 'Global rank',
+    cityFallback: 'City',
+    rankLabel: 'rank',
+    points: 'Points',
+    browseButton: 'Browse Chapters & Past Readings',
+  },
+  hi: {
+    loadError: 'आपका डैशबोर्ड लोड नहीं हो सका।',
+    tryAgain: 'पुनः प्रयास करें',
+    tagline: 'कृष्ण से रोज़ का ज्ञान',
+    greeting: 'जय श्री कृष्ण,',
+    todayBadge: 'आज',
+    readyTitle: 'जब आप तैयार हों',
+    continueSub: 'अपनी गीता यात्रा जारी रखें',
+    beginReading: 'पढ़ना शुरू करें',
+    globalRank: 'वैश्विक रैंक',
+    cityFallback: 'शहर',
+    rankLabel: 'रैंक',
+    points: 'अंक',
+    browseButton: 'अध्याय और पिछली पठन सूची देखें',
+  },
+};
+
+export default function HomeScreen({ userId, initialUser, lang, onBegin, onOpenSettings, onBrowse }) {
   const [user, setUser] = useState(initialUser || null);
   const [ranks, setRanks] = useState([]);
   // If we already have user data from the session check, skip the loading state
   const [loading, setLoading] = useState(!initialUser);
   const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
+  const t = STRINGS[lang] || STRINGS.en;
 
   const load = useCallback(async (forceUserFetch = false) => {
     try {
@@ -60,9 +94,9 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
       <View style={s.centered}>
         <LinearGradient colors={['#0D0500', '#1C0900']} style={StyleSheet.absoluteFillObject} />
         <Ionicons name="cloud-offline-outline" size={44} color="rgba(212,175,55,0.4)" />
-        <Text style={s.errorText}>Couldn't load your dashboard.</Text>
+        <Text style={s.errorText}>{t.loadError}</Text>
         <TouchableOpacity onPress={load} style={s.retryBtn}>
-          <Text style={s.retryText}>Try again</Text>
+          <Text style={s.retryText}>{t.tryAgain}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -97,16 +131,16 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
               <Text style={s.streakFire}>🔥</Text>
               <Text style={s.streakCount}>{user.streak_count}</Text>
             </View>
-            <View style={s.avatar}>
+            <TouchableOpacity style={s.avatar} onPress={onOpenSettings} activeOpacity={0.8}>
               <Text style={s.avatarText}>{initials(user.name)}</Text>
-            </View>
+            </TouchableOpacity>
           </View>
         </View>
 
         {/* ── Greeting ── */}
         <View style={s.greetWrap}>
-          <Text style={s.greetSub}>Daily Wisdom from Krishna</Text>
-          <Text style={s.greetName}>Jai Shri Krishna, {user.name.split(' ')[0]} 🙏</Text>
+          <Text style={s.greetSub}>{t.tagline}</Text>
+          <Text style={s.greetName}>{t.greeting} {user.name.split(' ')[0]} 🙏</Text>
         </View>
 
         {/* ── Today's Reading Card ── */}
@@ -118,17 +152,17 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
           >
             <View style={s.todayCardInner}>
               <View style={s.todayBadge}>
-                <Text style={s.todayBadgeText}>TODAY</Text>
+                <Text style={s.todayBadgeText}>{t.todayBadge}</Text>
               </View>
-              <Text style={s.todayTitle}>Ready when you are</Text>
-              <Text style={s.todaySub}>Continue your Gita journey</Text>
+              <Text style={s.todayTitle}>{t.readyTitle}</Text>
+              <Text style={s.todaySub}>{t.continueSub}</Text>
               <View style={s.beginBtn}>
                 <LinearGradient
                   colors={['#D4AF37', '#B8920A']}
                   style={s.beginBtnGrad}
                   start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
                 >
-                  <Text style={s.beginBtnText}>Begin Reading</Text>
+                  <Text style={s.beginBtnText}>{t.beginReading}</Text>
                   <Ionicons name="arrow-forward" size={16} color="#0D0500" style={{ marginLeft: 6 }} />
                 </LinearGradient>
               </View>
@@ -144,7 +178,7 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
               <Ionicons name="trophy-outline" size={18} color="#D4AF37" />
             </View>
             <Text style={s.statValue}>{globalRank ? `#${globalRank.rank}` : '—'}</Text>
-            <Text style={s.statLabel}>Global rank</Text>
+            <Text style={s.statLabel}>{t.globalRank}</Text>
           </View>
 
           <View style={s.statCard}>
@@ -152,7 +186,7 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
               <Ionicons name="location-outline" size={18} color="#D4AF37" />
             </View>
             <Text style={s.statValue}>{cityRank ? `#${cityRank.rank}` : '—'}</Text>
-            <Text style={s.statLabel}>{user.main_city || 'City'} rank</Text>
+            <Text style={s.statLabel}>{user.main_city || t.cityFallback} {t.rankLabel}</Text>
           </View>
 
           <View style={s.statCard}>
@@ -160,7 +194,7 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
               <Ionicons name="star-outline" size={18} color="#D4AF37" />
             </View>
             <Text style={s.statValue}>{user.total_score}</Text>
-            <Text style={s.statLabel}>Points</Text>
+            <Text style={s.statLabel}>{t.points}</Text>
           </View>
         </View>
 
@@ -168,7 +202,7 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
         {onBrowse && (
           <TouchableOpacity onPress={onBrowse} style={s.browseBtn} activeOpacity={0.85}>
             <Ionicons name="book-outline" size={18} color="#D4AF37" />
-            <Text style={s.browseBtnText}>Browse Chapters &amp; Past Readings</Text>
+            <Text style={s.browseBtnText}>{t.browseButton}</Text>
             <Ionicons name="chevron-forward" size={16} color="rgba(212,175,55,0.5)" />
           </TouchableOpacity>
         )}
@@ -181,13 +215,6 @@ export default function HomeScreen({ userId, initialUser, onBegin, onLogout, onB
           <Text style={s.quoteAttrib}>— Bhagavad Gita 2.47</Text>
         </View>
 
-        {/* ── Logout ── */}
-        {onLogout && (
-          <TouchableOpacity onPress={onLogout} style={s.logoutBtn}>
-            <Ionicons name="log-out-outline" size={14} color="rgba(212,175,55,0.35)" />
-            <Text style={s.logoutText}>Sign out</Text>
-          </TouchableOpacity>
-        )}
       </ScrollView>
     </View>
   );
@@ -244,8 +271,6 @@ const s = StyleSheet.create({
   quoteAttrib: { fontSize: 11, color: '#7A5C34' },
 
   // Logout
-  logoutBtn: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
-  logoutText: { fontSize: 12, color: 'rgba(212,175,55,0.35)' },
 
   // Error
   errorText: { color: '#C9A96E', fontSize: 15, marginTop: 14, marginBottom: 16 },

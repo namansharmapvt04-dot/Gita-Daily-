@@ -26,6 +26,11 @@
       },
       "permissions": []
     },
-    "plugins": ["expo-linear-gradient"]
+    "plugins": ["@react-native-google-signin/google-signin"],
+    "extra": {
+      "eas": {
+        "projectId": "8af0c462-b45c-46f8-b6be-8b11f4eb597d"
+      }
+    }
   }
 }

@@ -2,21 +2,17 @@ import React, { useState } from 'react';
 import {
     View,
     Text,
-    TextInput,
     TouchableOpacity,
     StyleSheet,
     Image,
-    KeyboardAvoidingView,
-    Platform,
     ScrollView,
     ActivityIndicator,
-    Dimensions,
     StatusBar,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
-
-const { width } = Dimensions.get('window');
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import api from '../api/client';
 
 const C = {
     bg: '#0D0500',
@@ -35,40 +31,24 @@ const C = {
     googleText: '#1A0800',
 };
 
-export default function LoginScreen({ onLogin, onSignup, onForgotPassword }) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [showPass, setShowPass] = useState(false);
-    const [loading, setLoading] = useState(false);
+export default function LoginScreen({ onGoogleAuth }) {
     const [gLoading, setGLoading] = useState(false);
     const [error, setError] = useState('');
-
-    /* ── Auth handlers (wire up your API / Google SDK here) ── */
-    const handleEmailLogin = async () => {
-        if (!email.trim() || !password) {
-            setError('Please enter your email and password.');
-            return;
-        }
-        setError('');
-        setLoading(true);
-        try {
-            // TODO: await api.post('/auth/login', { email, password });
-            // onLogin(userId);
-        } catch (err) {
-            setError(err?.message || 'Login failed. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
 
     const handleGoogleLogin = async () => {
         setGLoading(true);
         setError('');
         try {
-            // TODO: Google Sign-In via expo-auth-session or @react-native-google-signin
-            // onLogin(userId);
+            await GoogleSignin.hasPlayServices();
+            const response = await GoogleSignin.signIn();
+            const idToken = response.data?.idToken;
+            if (!idToken) throw new Error('No ID token returned from Google.');
+            const { user, needsOnboarding } = await api.googleAuth(idToken);
+            onGoogleAuth(user, needsOnboarding);
         } catch (err) {
-            setError('Google sign-in failed. Please try again.');
+            if (err?.code !== 'SIGN_IN_CANCELLED') {
+                setError(err?.message || 'Google sign-in failed. Please try again.');
+            }
         } finally {
             setGLoading(false);
         }
@@ -90,147 +70,62 @@ export default function LoginScreen({ onLogin, onSignup, onForgotPassword }) {
             <View style={s.glow1} />
             <View style={s.glow2} />
 
-            <KeyboardAvoidingView
-                behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-                style={{ flex: 1 }}
+            <ScrollView
+                contentContainerStyle={s.scroll}
+                showsVerticalScrollIndicator={false}
             >
-                <ScrollView
-                    contentContainerStyle={s.scroll}
-                    keyboardShouldPersistTaps="handled"
-                    showsVerticalScrollIndicator={false}
-                >
 
-                    {/* ── Logo + Branding ── */}
-                    <View style={s.brand}>
-                        <View style={s.logoRing}>
-                            <Image
-                                // Adjust path to match your assets folder
-                                source={require('../../assets/logo.png')}
-                                style={s.logo}
-                                resizeMode="contain"
-                            />
-                        </View>
-                        <Text style={s.appName}>GITA DAILY</Text>
-                        <View style={s.taglineRow}>
-                            <View style={s.taglineLine} />
-                            <Text style={s.tagline}>Daily Wisdom from Krishna</Text>
-                            <View style={s.taglineLine} />
-                        </View>
+                {/* ── Logo + Branding ── */}
+                <View style={s.brand}>
+                    <View style={s.logoRing}>
+                        <Image
+                            source={require('../../assets/logo.png')}
+                            style={s.logo}
+                            resizeMode="contain"
+                        />
                     </View>
+                    <Text style={s.appName}>GITA DAILY</Text>
+                    <View style={s.taglineRow}>
+                        <View style={s.taglineLine} />
+                        <Text style={s.tagline}>Daily Wisdom from Krishna</Text>
+                        <View style={s.taglineLine} />
+                    </View>
+                </View>
 
-                    {/* ── Card ── */}
-                    <View style={s.card}>
+                {/* ── Card ── */}
+                <View style={s.card}>
 
-                        {/* Google Button */}
-                        <TouchableOpacity
-                            style={s.googleBtn}
-                            onPress={handleGoogleLogin}
-                            activeOpacity={0.88}
-                            disabled={gLoading}
-                        >
-                            {gLoading ? (
-                                <ActivityIndicator color={C.googleText} size="small" />
-                            ) : (
-                                <>
-                                    <AntDesign name="google" size={18} color="#DB4437" />
-                                    <Text style={s.googleBtnText}>Continue with Google</Text>
-                                </>
-                            )}
-                        </TouchableOpacity>
-
-                        {/* Divider */}
-                        <View style={s.divRow}>
-                            <View style={s.divLine} />
-                            <Text style={s.divText}>or sign in with email</Text>
-                            <View style={s.divLine} />
+                    {/* Error banner */}
+                    {!!error && (
+                        <View style={s.errorBox}>
+                            <Ionicons name="alert-circle" size={15} color={C.error} />
+                            <Text style={s.errorText}>{error}</Text>
                         </View>
+                    )}
 
-                        {/* Error banner */}
-                        {!!error && (
-                            <View style={s.errorBox}>
-                                <Ionicons name="alert-circle" size={15} color={C.error} />
-                                <Text style={s.errorText}>{error}</Text>
-                            </View>
+                    {/* Google Button */}
+                    <TouchableOpacity
+                        style={s.googleBtn}
+                        onPress={handleGoogleLogin}
+                        activeOpacity={0.88}
+                        disabled={gLoading}
+                    >
+                        {gLoading ? (
+                            <ActivityIndicator color={C.googleText} size="small" />
+                        ) : (
+                            <>
+                                <AntDesign name="google" size={18} color="#DB4437" />
+                                <Text style={s.googleBtnText}>Continue with Google</Text>
+                            </>
                         )}
+                    </TouchableOpacity>
 
-                        {/* Email */}
-                        <View style={s.inputWrap}>
-                            <Ionicons name="mail-outline" size={17} color={C.textMuted} style={s.inputIcon} />
-                            <TextInput
-                                style={s.input}
-                                placeholder="Email address"
-                                placeholderTextColor={C.textMuted}
-                                value={email}
-                                onChangeText={setEmail}
-                                keyboardType="email-address"
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                returnKeyType="next"
-                            />
-                        </View>
+                </View>
 
-                        {/* Password */}
-                        <View style={s.inputWrap}>
-                            <Ionicons name="lock-closed-outline" size={17} color={C.textMuted} style={s.inputIcon} />
-                            <TextInput
-                                style={[s.input, { flex: 1 }]}
-                                placeholder="Password"
-                                placeholderTextColor={C.textMuted}
-                                value={password}
-                                onChangeText={setPassword}
-                                secureTextEntry={!showPass}
-                                autoCapitalize="none"
-                                returnKeyType="done"
-                                onSubmitEditing={handleEmailLogin}
-                            />
-                            <TouchableOpacity onPress={() => setShowPass(v => !v)} hitSlop={{ top: 8, bottom: 8, left: 8, right: 8 }}>
-                                <Ionicons
-                                    name={showPass ? 'eye-outline' : 'eye-off-outline'}
-                                    size={17}
-                                    color={C.textMuted}
-                                />
-                            </TouchableOpacity>
-                        </View>
+                {/* Sanskrit footer */}
+                <Text style={s.footer}>ॐ  श्रीमद्भगवद्गीता</Text>
 
-                        {/* Forgot */}
-                        <TouchableOpacity
-                            style={s.forgotWrap}
-                            onPress={() => onForgotPassword && onForgotPassword()}
-                        >
-                            <Text style={s.forgotText}>Forgot password?</Text>
-                        </TouchableOpacity>
-
-                        {/* Sign In button */}
-                        <TouchableOpacity onPress={handleEmailLogin} activeOpacity={0.85} disabled={loading}>
-                            <LinearGradient
-                                colors={['#D4AF37', '#B8920A', '#9A7A00']}
-                                style={s.loginBtn}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                            >
-                                {loading ? (
-                                    <ActivityIndicator color={C.bg} size="small" />
-                                ) : (
-                                    <Text style={s.loginBtnText}>Sign In</Text>
-                                )}
-                            </LinearGradient>
-                        </TouchableOpacity>
-
-                        {/* Sign Up link */}
-                        <View style={s.signupRow}>
-                            <Text style={s.signupPrompt}>New to Gita Daily?  </Text>
-                            <TouchableOpacity onPress={() => onSignup && onSignup()}>
-                                <Text style={s.signupLink}>Create account</Text>
-                            </TouchableOpacity>
-                        </View>
-
-                    </View>
-
-                    {/* Sanskrit footer */}
-                    <Text style={s.footer}>ॐ  श्रीमद्भगवद्गीता</Text>
-
-                </ScrollView>
-            </KeyboardAvoidingView>
+            </ScrollView>
         </View>
     );
 }
@@ -348,24 +243,6 @@ const s = StyleSheet.create({
         letterSpacing: 0.2,
     },
 
-    /* Divider */
-    divRow: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 20,
-        gap: 8,
-    },
-    divLine: {
-        flex: 1,
-        height: 1,
-        backgroundColor: 'rgba(212,175,55,0.18)',
-    },
-    divText: {
-        fontSize: 11,
-        color: C.textMuted,
-        letterSpacing: 0.3,
-    },
-
     /* Error */
     errorBox: {
         flexDirection: 'row',
@@ -381,75 +258,6 @@ const s = StyleSheet.create({
         fontSize: 13,
         color: C.error,
         flex: 1,
-    },
-
-    /* Inputs */
-    inputWrap: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        backgroundColor: C.inputBg,
-        borderRadius: 13,
-        borderWidth: 1,
-        borderColor: C.goldBorder,
-        paddingHorizontal: 14,
-        paddingVertical: 14,
-        marginBottom: 14,
-    },
-    inputIcon: {
-        marginRight: 10,
-    },
-    input: {
-        flex: 1,
-        fontSize: 15,
-        color: C.textPrimary,
-        padding: 0,
-        margin: 0,
-    },
-
-    /* Forgot */
-    forgotWrap: {
-        alignSelf: 'flex-end',
-        marginTop: -6,
-        marginBottom: 20,
-    },
-    forgotText: {
-        fontSize: 13,
-        color: C.gold,
-    },
-
-    /* Login button */
-    loginBtn: {
-        borderRadius: 13,
-        paddingVertical: 15,
-        alignItems: 'center',
-        marginBottom: 20,
-        shadowColor: C.gold,
-        shadowOpacity: 0.3,
-        shadowRadius: 10,
-        shadowOffset: { width: 0, height: 3 },
-        elevation: 4,
-    },
-    loginBtnText: {
-        fontSize: 16,
-        fontWeight: '700',
-        color: '#0D0500',
-        letterSpacing: 1.5,
-    },
-
-    /* Sign up */
-    signupRow: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    signupPrompt: {
-        fontSize: 14,
-        color: C.textMuted,
-    },
-    signupLink: {
-        fontSize: 14,
-        fontWeight: '600',
-        color: C.gold,
     },
 
     /* Footer */

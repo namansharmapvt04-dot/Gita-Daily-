@@ -6,9 +6,25 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import api from '../api/client';
 
+const STRINGS = {
+  en: {
+    savingResults: 'Saving your results…',
+    quiz: 'Quiz', chapter: 'Chapter',
+    correct: 'Correct!', notQuite: 'Not quite',
+    finish: 'Finish  ✓', nextQuestion: 'Next Question  →',
+  },
+  hi: {
+    savingResults: 'आपके परिणाम सहेजे जा रहे हैं…',
+    quiz: 'क्विज़', chapter: 'अध्याय',
+    correct: 'सही जवाब!', notQuite: 'थोड़ा और सोचिए',
+    finish: 'पूर्ण करें  ✓', nextQuestion: 'अगला प्रश्न  →',
+  },
+};
+
 // onDone(result) — result has streak_count, points_earned, quiz_score
-export default function QuizScreen({ userId, content, onDone }) {
+export default function QuizScreen({ userId, content, lang, onDone }) {
   const { part, questions } = content;
+  const t = STRINGS[lang] || STRINGS.en;
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [answers, setAnswers] = useState([]);
@@ -55,7 +71,7 @@ export default function QuizScreen({ userId, content, onDone }) {
       <View style={s.centered}>
         <LinearGradient colors={['#0D0500', '#1C0900']} style={StyleSheet.absoluteFillObject} />
         <ActivityIndicator color="#D4AF37" size="large" />
-        <Text style={s.submittingText}>Saving your results…</Text>
+        <Text style={s.submittingText}>{t.savingResults}</Text>
       </View>
     );
   }
@@ -75,7 +91,7 @@ export default function QuizScreen({ userId, content, onDone }) {
       {/* Header */}
       <View style={s.header}>
         <View style={s.chapterBadge}>
-          <Text style={s.chapterBadgeText}>Quiz  ·  Chapter {part.chapter_number}</Text>
+          <Text style={s.chapterBadgeText}>{t.quiz}  ·  {t.chapter} {part.chapter_number}</Text>
         </View>
         <Text style={s.progressLabel}>{index + 1} / {questions.length}</Text>
       </View>
@@ -153,7 +169,7 @@ export default function QuizScreen({ userId, content, onDone }) {
                 color={isCorrect ? '#52C41A' : '#FF6B6B'}
               />
               <Text style={[s.feedbackTitle, { color: isCorrect ? '#52C41A' : '#FF6B6B' }]}>
-                {isCorrect ? 'Correct!' : 'Not quite'}
+                {isCorrect ? t.correct : t.notQuite}
               </Text>
             </View>
             <Text style={s.feedbackText}>{question.explanation}</Text>
@@ -179,7 +195,7 @@ export default function QuizScreen({ userId, content, onDone }) {
               style={s.nextBtn}
               start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             >
-              <Text style={s.nextBtnText}>{isLast ? 'Finish  ✓' : 'Next Question  →'}</Text>
+              <Text style={s.nextBtnText}>{isLast ? t.finish : t.nextQuestion}</Text>
             </LinearGradient>
           </TouchableOpacity>
         </View>

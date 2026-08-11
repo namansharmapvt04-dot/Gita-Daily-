@@ -5,17 +5,33 @@ import {
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
+const STRINGS = {
+  en: {
+    chapter: 'Chapter', part: 'Part', min: 'min',
+    continueToQuiz: 'Continue to Quiz  →',
+    doneReviewing: 'Done Reviewing',
+    finishReading: 'Finish Reading  ✓',
+  },
+  hi: {
+    chapter: 'अध्याय', part: 'भाग', min: 'मिनट',
+    continueToQuiz: 'क्विज़ पर जाएं  →',
+    doneReviewing: 'पुनरावलोकन पूर्ण',
+    finishReading: 'पढ़ना पूर्ण करें  ✓',
+  },
+};
+
 // content = { part, verses, questions }
 // mode = 'full' | 'quick' | 'review'
 // onContinue(mode, content)
-export default function ReadingScreen({ content, mode, onContinue }) {
+export default function ReadingScreen({ content, mode, lang, onContinue }) {
   const { part, verses } = content;
   const scrollRef = useRef(null);
+  const t = STRINGS[lang] || STRINGS.en;
 
   const btnLabel =
-    mode === 'full' ? 'Continue to Quiz  →' :
-      mode === 'review' ? 'Done Reviewing' :
-        'Finish Reading  ✓';
+    mode === 'full' ? t.continueToQuiz :
+      mode === 'review' ? t.doneReviewing :
+        t.finishReading;
 
   return (
     <View style={s.root}>
@@ -31,12 +47,12 @@ export default function ReadingScreen({ content, mode, onContinue }) {
       <View style={s.header}>
         <View style={s.chapterBadge}>
           <Text style={s.chapterBadgeText}>
-            Chapter {part.chapter_number}  ·  Part {part.part_number}
+            {t.chapter} {part.chapter_number}  ·  {t.part} {part.part_number}
           </Text>
         </View>
         <View style={s.timeBadge}>
           <Ionicons name="time-outline" size={12} color="#7A5C34" />
-          <Text style={s.timeBadgeText}>~{part.estimated_minutes} min</Text>
+          <Text style={s.timeBadgeText}>~{part.estimated_minutes} {t.min}</Text>
         </View>
       </View>
 

@@ -1,7 +1,6 @@
 // Point this at your deployed backend URL, or localhost:4000 during development
 // (use your machine's LAN IP instead of localhost if testing on a physical device).
-const BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'http://10.110.154.103:4000';
-
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL || 'https://gita-daily-production-a39d.up.railway.app';
 async function request(path, options = {}) {
   const res = await fetch(`${BASE_URL}${path}`, {
     headers: { 'Content-Type': 'application/json' },
@@ -40,7 +39,22 @@ export const api = {
   getProgress: (id) => cachedGet(`/content/progress/${id}`),
   getPart: (id) => cachedGet(`/content/part/${id}`),
 
-  createUser: (data) => request('/users', { method: 'POST', body: JSON.stringify(data) }),
+  googleAuth: (idToken) => request('/auth/google', { method: 'POST', body: JSON.stringify({ idToken }) }),
+
+  updateUserPrefs: async (id, data) => {
+    const result = await request(`/users/${id}`, { method: 'PATCH', body: JSON.stringify(data) });
+    invalidate(`/users/${id}`);
+    return result;
+  },
+
+  resetProgress: async (id) => {
+    const result = await request(`/users/${id}/reset-progress`, { method: 'POST' });
+    invalidate(`/users/${id}`);
+    invalidate(`/leaderboard/me/${id}`);
+    invalidate(`/content/today/${id}`);
+    invalidate(`/content/progress/${id}`);
+    return result;
+  },
 
   submitReading: async (data) => {
     const result = await request('/reading/submit', { method: 'POST', body: JSON.stringify(data) });

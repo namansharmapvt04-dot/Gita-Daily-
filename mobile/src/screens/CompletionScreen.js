@@ -6,10 +6,40 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import api from '../api/client';
 
+const STRINGS = {
+  en: {
+    partComplete: 'Part Complete!',
+    correct: 'correct',
+    dayStreak: 'day streak',
+    pointsEarned: 'points earned',
+    globalRank: 'Global Rank',
+    cityRank: 'City Rank',
+    keepGoing: 'Keep going?',
+    nextPartReady: 'The next part is ready whenever you are.',
+    continueToNextPart: 'Continue to next part',
+    enoughForToday: "That's enough for today",
+    streakFootnote: 'Your streak is already counted for today.',
+  },
+  hi: {
+    partComplete: 'भाग पूर्ण हुआ!',
+    correct: 'सही',
+    dayStreak: 'दिन की लगातार पढ़ाई',
+    pointsEarned: 'अंक अर्जित किए',
+    globalRank: 'वैश्विक रैंक',
+    cityRank: 'शहर रैंक',
+    keepGoing: 'आगे बढ़ें?',
+    nextPartReady: 'अगला भाग तैयार है, जब भी आप चाहें।',
+    continueToNextPart: 'अगले भाग पर जाएं',
+    enoughForToday: 'आज के लिए इतना काफी है',
+    streakFootnote: 'आज के लिए आपकी लगातार पढ़ाई गिनी जा चुकी है।',
+  },
+};
+
 // result = { streak_count, points_earned, quiz_score }
-export default function CompletionScreen({ userId, result, onContinue, onStop }) {
+export default function CompletionScreen({ userId, result, lang, onContinue, onStop }) {
   const [ranks, setRanks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const t = STRINGS[lang] || STRINGS.en;
 
   useEffect(() => {
     api.getMyRank(userId)
@@ -42,16 +72,16 @@ export default function CompletionScreen({ userId, result, onContinue, onStop })
             </LinearGradient>
           </View>
 
-          <Text style={s.title}>Part Complete!</Text>
+          <Text style={s.title}>{t.partComplete}</Text>
           <Text style={s.subtitle}>
-            {quizPct != null ? `${quizPct}% correct · ` : ''}
-            🔥 {result.streak_count} day streak
+            {quizPct != null ? `${quizPct}% ${t.correct} · ` : ''}
+            🔥 {result.streak_count} {t.dayStreak}
           </Text>
 
           {result.points_earned > 0 && (
             <View style={s.pointsBadge}>
               <Ionicons name="star" size={14} color="#D4AF37" />
-              <Text style={s.pointsText}>+{result.points_earned} points earned</Text>
+              <Text style={s.pointsText}>+{result.points_earned} {t.pointsEarned}</Text>
             </View>
           )}
         </View>
@@ -62,7 +92,7 @@ export default function CompletionScreen({ userId, result, onContinue, onStop })
             <View style={s.statIconWrap}>
               <Ionicons name="trophy-outline" size={16} color="#D4AF37" />
             </View>
-            <Text style={s.statLabel}>Global Rank</Text>
+            <Text style={s.statLabel}>{t.globalRank}</Text>
             {loading
               ? <ActivityIndicator color="#D4AF37" size="small" />
               : <Text style={s.statValue}>{globalRank ? `#${globalRank.rank}` : '—'}</Text>
@@ -72,7 +102,7 @@ export default function CompletionScreen({ userId, result, onContinue, onStop })
             <View style={s.statIconWrap}>
               <Ionicons name="location-outline" size={16} color="#D4AF37" />
             </View>
-            <Text style={s.statLabel}>City Rank</Text>
+            <Text style={s.statLabel}>{t.cityRank}</Text>
             {loading
               ? <ActivityIndicator color="#D4AF37" size="small" />
               : <Text style={s.statValue}>{cityRank ? `#${cityRank.rank}` : '—'}</Text>
@@ -89,8 +119,8 @@ export default function CompletionScreen({ userId, result, onContinue, onStop })
 
         {/* Bottom: full-width buttons */}
         <View style={s.bottomSection}>
-          <Text style={s.continueTitle}>Keep going?</Text>
-          <Text style={s.continueSub}>The next part is ready whenever you are.</Text>
+          <Text style={s.continueTitle}>{t.keepGoing}</Text>
+          <Text style={s.continueSub}>{t.nextPartReady}</Text>
 
           <TouchableOpacity onPress={onContinue} activeOpacity={0.88} style={s.continueBtnWrap}>
             <LinearGradient
@@ -98,16 +128,16 @@ export default function CompletionScreen({ userId, result, onContinue, onStop })
               style={s.continueBtn}
               start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }}
             >
-              <Text style={s.continueBtnText}>Continue to next part</Text>
+              <Text style={s.continueBtnText}>{t.continueToNextPart}</Text>
               <Ionicons name="arrow-forward" size={16} color="#0D0500" />
             </LinearGradient>
           </TouchableOpacity>
 
           <TouchableOpacity onPress={onStop} style={s.stopBtn} activeOpacity={0.8}>
-            <Text style={s.stopBtnText}>That's enough for today</Text>
+            <Text style={s.stopBtnText}>{t.enoughForToday}</Text>
           </TouchableOpacity>
 
-          <Text style={s.footnote}>Your streak is already counted for today.</Text>
+          <Text style={s.footnote}>{t.streakFootnote}</Text>
         </View>
       </View>
     </View>

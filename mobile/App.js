@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet, StatusBar } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
+import { GOOGLE_WEB_CLIENT_ID } from './src/config';
 import LoginScreen from './src/screens/LoginScreen';
-import SignupScreen from './src/screens/SignupScreen';
 import OnboardingScreen from './src/screens/OnboardingScreen';
 import HomeScreen from './src/screens/HomeScreen';
+import SettingsScreen from './src/screens/SettingsScreen';
 import BrowseScreen from './src/screens/BrowseScreen';
 import TodayChoiceScreen from './src/screens/TodayChoiceScreen';
 import ReadingScreen from './src/screens/ReadingScreen';
@@ -17,12 +19,14 @@ import api from './src/api/client';
 
 const USER_ID_KEY = 'gitaDaily.userId';
 
+GoogleSignin.configure({ webClientId: GOOGLE_WEB_CLIENT_ID });
+
 export default function App() {
   const [userId, setUserId] = useState(null);
   const [cachedUser, setCachedUser] = useState(null);  // avoids HomeScreen re-fetching on launch
+  const [lang, setLang] = useState('en');  // drives UI text across every post-auth screen
   const [checking, setChecking] = useState(true);
   const [screen, setScreen] = useState('login');
-  const [signupData, setSignupData] = useState(null);
   const [activeContent, setActiveContent] = useState(null);
   const [activeMode, setActiveMode] = useState(null);
   const [lastResult, setLastResult] = useState(null);
@@ -38,6 +42,7 @@ export default function App() {
           const user = await api.getUser(saved);
           setUserId(saved);
           setCachedUser(user);
+          setLang(user.preferred_language || 'en');
           setScreen('home');
         }
       } catch {
@@ -49,26 +54,22 @@ export default function App() {
   }, []);
 
   // ── Handlers ──
-  const handleLogin = async (newUserId) => {
-    await AsyncStorage.setItem(USER_ID_KEY, newUserId);
-    setUserId(newUserId);
-    setCachedUser(null);  // HomeScreen will fetch fresh on login
-    setScreen('home');
+  // Called after LoginScreen exchanges a Google idToken for a user record.
+  // needsOnboarding is true both for brand-new accounts and for anyone who
+  // signed in before but never finished picking language/state/pace.
+  const handleGoogleAuth = async (user, needsOnboarding) => {
+    await AsyncStorage.setItem(USER_ID_KEY, user.id);
+    setUserId(user.id);
+    setCachedUser(needsOnboarding ? null : user);
+    if (!needsOnboarding) setLang(user.preferred_language || 'en');
+    setScreen(needsOnboarding ? 'onboarding' : 'home');
   };
 
-  const handleGoToSignup = () => setScreen('signup');
-  const handleBackToLogin = () => setScreen('login');
-
-  const handleSignupNext = (data) => {
-    setSignupData(data);
-    setScreen('onboarding');
-  };
-
-  const handleUserCreated = async (newUserId) => {
-    await AsyncStorage.setItem(USER_ID_KEY, newUserId);
-    setUserId(newUserId);
-    setSignupData(null);
-    setCachedUser(null);  // fresh user — HomeScreen will fetch
+  // chosenLanguage comes straight from OnboardingScreen's step 1 pick, so the rest of
+  // the app reflects it immediately without waiting on a fresh user fetch.
+  const handleOnboardingComplete = (chosenLanguage) => {
+    setCachedUser(null);  // preferences just changed — HomeScreen will fetch fresh
+    setLang(chosenLanguage || 'en');
     setScreen('home');
   };
 
@@ -78,6 +79,15 @@ export default function App() {
     setActiveContent(null);
     setLastResult(null);
     setScreen('login');
+  };
+
+  const handleOpenSettings = () => setScreen('settings');
+  const handleBackFromSettings = () => setScreen('home');
+
+  const handleResetProgress = async () => {
+    await api.resetProgress(userId);
+    setCachedUser(null);  // HomeScreen will fetch the reset stats
+    setScreen('home');
   };
 
   const handleBegin = () => setScreen('todayChoice');
@@ -136,15 +146,11 @@ export default function App() {
 
   // ── Auth flow ──
   if (screen === 'login') {
-    return <LoginScreen onLogin={handleLogin} onSignup={handleGoToSignup} />;
-  }
-
-  if (screen === 'signup') {
-    return <SignupScreen onBack={handleBackToLogin} onNext={handleSignupNext} />;
+    return <LoginScreen onGoogleAuth={handleGoogleAuth} />;
   }
 
   if (screen === 'onboarding') {
-    return <OnboardingScreen signupData={signupData} onComplete={handleUserCreated} />;
+    return <OnboardingScreen userId={userId} onComplete={handleOnboardingComplete} />;
   }
 
   // ── Main app ──
@@ -153,24 +159,35 @@ export default function App() {
       <StatusBar barStyle="light-content" backgroundColor="#0D0500" />
 
       {screen === 'home' && (
-        <HomeScreen userId={userId} initialUser={cachedUser} onBegin={handleBegin} onLogout={handleLogout} onBrowse={handleBrowse} />
+        <HomeScreen userId={userId} initialUser={cachedUser} lang={lang} onBegin={handleBegin} onOpenSettings={handleOpenSettings} onBrowse={handleBrowse} />
+      )}
+      {screen === 'settings' && (
+        <SettingsScreen
+          userId={userId}
+          initialUser={cachedUser}
+          lang={lang}
+          onBack={handleBackFromSettings}
+          onLogout={handleLogout}
+          onResetProgress={handleResetProgress}
+        />
       )}
       {screen === 'browse' && (
-        <BrowseScreen userId={userId} onOpenPart={handleOpenPart} onBack={handleBackFromBrowse} />
+        <BrowseScreen userId={userId} lang={lang} onOpenPart={handleOpenPart} onBack={handleBackFromBrowse} />
       )}
       {screen === 'todayChoice' && (
-        <TodayChoiceScreen userId={userId} onSelect={handleChoiceSelect} />
+        <TodayChoiceScreen userId={userId} lang={lang} onSelect={handleChoiceSelect} />
       )}
       {screen === 'reading' && activeContent && (
-        <ReadingScreen content={activeContent} mode={activeMode} onContinue={handleReadingContinue} />
+        <ReadingScreen content={activeContent} mode={activeMode} lang={lang} onContinue={handleReadingContinue} />
       )}
       {screen === 'quiz' && activeContent && (
-        <QuizScreen userId={userId} content={activeContent} onDone={handleQuizDone} />
+        <QuizScreen userId={userId} content={activeContent} lang={lang} onDone={handleQuizDone} />
       )}
       {screen === 'completion' && lastResult && (
         <CompletionScreen
           userId={userId}
           result={lastResult}
+          lang={lang}
           onContinue={handleContinueReading}
           onStop={handleStopForToday}
         />

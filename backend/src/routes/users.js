@@ -67,7 +67,7 @@ router.post('/:id/reset-progress', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const result = await pool.query(
-      `SELECT u.id, u.name, u.preferred_language, u.streak_count, u.longest_streak,
+      `SELECT u.id, u.name, u.email, u.preferred_language, u.streak_count, u.longest_streak,
               u.total_parts_completed, u.total_score, u.streak_freezes_remaining, s.main_city
        FROM users u LEFT JOIN states s ON s.id = u.state_id
        WHERE u.id = $1`,

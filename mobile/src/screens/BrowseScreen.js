@@ -7,7 +7,31 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import api from '../api/client';
 
-export default function BrowseScreen({ userId, onOpenPart, onBack }) {
+const STRINGS = {
+  en: {
+    journeyTitle: 'Your Journey',
+    loadError: "Couldn't load your progress.",
+    tryAgain: 'Try again',
+    chapterWord: 'Chapter',
+    partWord: 'Part',
+    completed: 'Completed · tap to re-read',
+    ready: (min) => `Ready · ~${min} min`,
+    locked: 'Locked',
+  },
+  hi: {
+    journeyTitle: 'आपकी यात्रा',
+    loadError: 'आपकी प्रगति लोड नहीं हो सकी।',
+    tryAgain: 'पुनः प्रयास करें',
+    chapterWord: 'अध्याय',
+    partWord: 'भाग',
+    completed: 'पूर्ण · फिर से पढ़ने के लिए टैप करें',
+    ready: (min) => `तैयार · ~${min} मिनट`,
+    locked: 'लॉक्ड',
+  },
+};
+
+export default function BrowseScreen({ userId, lang, onOpenPart, onBack }) {
+  const t = STRINGS[lang] || STRINGS.en;
   const [parts, setParts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -37,9 +61,9 @@ export default function BrowseScreen({ userId, onOpenPart, onBack }) {
       <View style={s.centered}>
         <LinearGradient colors={['#0D0500', '#1C0900']} style={StyleSheet.absoluteFillObject} />
         <Ionicons name="cloud-offline-outline" size={40} color="rgba(212,175,55,0.4)" />
-        <Text style={s.errorText}>Couldn't load your progress.</Text>
+        <Text style={s.errorText}>{t.loadError}</Text>
         <TouchableOpacity onPress={load} style={s.retryBtn}>
-          <Text style={s.retryText}>Try again</Text>
+          <Text style={s.retryText}>{t.tryAgain}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -49,7 +73,7 @@ export default function BrowseScreen({ userId, onOpenPart, onBack }) {
   parts.forEach((p) => {
     const key = p.chapter_number;
     if (!chapterMap[key]) {
-      chapterMap[key] = { title: `Chapter ${p.chapter_number}`, subtitle: p.chapter_title, data: [] };
+      chapterMap[key] = { title: `${t.chapterWord} ${p.chapter_number}`, subtitle: p.chapter_title, data: [] };
     }
     chapterMap[key].data.push(p);
   });
@@ -70,7 +94,7 @@ export default function BrowseScreen({ userId, onOpenPart, onBack }) {
           <Ionicons name="arrow-back" size={22} color="#D4AF37" />
         </TouchableOpacity>
         <View style={{ flex: 1, alignItems: 'center' }}>
-          <Text style={s.headerTitle}>Your Journey</Text>
+          <Text style={s.headerTitle}>{t.journeyTitle}</Text>
         </View>
         <View style={{ width: 38 }} />
       </View>
@@ -111,14 +135,14 @@ export default function BrowseScreen({ userId, onOpenPart, onBack }) {
               </View>
               <View style={{ flex: 1 }}>
                 <Text style={[s.rowTitle, isLocked && s.rowTitleMuted]}>
-                  Part {item.part_number}
+                  {t.partWord} {item.part_number}
                 </Text>
                 <Text style={s.rowMeta}>
                   {isDone
-                    ? 'Completed · tap to re-read'
+                    ? t.completed
                     : isNext
-                      ? `Ready · ~${item.estimated_minutes} min`
-                      : 'Locked'}
+                      ? t.ready(item.estimated_minutes)
+                      : t.locked}
                 </Text>
               </View>
               {isDone && (

@@ -15,11 +15,53 @@ const LANGUAGES = [
   { code: 'bn', label: 'বাংলা', sub: 'Bengali', available: false },
 ];
 
-const PACE_OPTIONS = [
-  { value: 'short', label: 'Quick  ~2 min', sub: 'A verse or two to start the day', icon: 'flash-outline' },
-  { value: 'medium', label: 'Balanced  ~5 min', sub: 'A meaningful daily portion', icon: 'book-outline' },
-  { value: 'long', label: 'Deep  ~10 min', sub: 'Full parts with rich reflection', icon: 'library-outline' },
-];
+const PACE_OPTIONS = {
+  en: [
+    { value: 'short', label: 'Quick  ~2 min', sub: 'A verse or two to start the day', icon: 'flash-outline' },
+    { value: 'medium', label: 'Balanced  ~5 min', sub: 'A meaningful daily portion', icon: 'book-outline' },
+    { value: 'long', label: 'Deep  ~10 min', sub: 'Full parts with rich reflection', icon: 'library-outline' },
+  ],
+  hi: [
+    { value: 'short', label: 'संक्षिप्त  ~2 मिनट', sub: 'दिन की शुरुआत के लिए एक-दो श्लोक', icon: 'flash-outline' },
+    { value: 'medium', label: 'संतुलित  ~5 मिनट', sub: 'एक सार्थक दैनिक अंश', icon: 'book-outline' },
+    { value: 'long', label: 'गहन  ~10 मिनट', sub: 'गहन चिंतन के साथ पूरा भाग', icon: 'library-outline' },
+  ],
+};
+
+const STRINGS = {
+  en: {
+    stepWord: 'Step', ofWord: 'of',
+    stepTitles: ['Your Language', 'Your State', 'Daily Pace', 'All Set'],
+    languageTitle: 'Which language?',
+    languageSubtitle: 'You can change this anytime in settings.',
+    comingSoon: 'Coming soon',
+    stateTitle: 'Which state?',
+    stateSubtitle: "You'll be ranked with readers in your city.",
+    statesLoadError: "Couldn't load states.",
+    tryAgain: 'Try again',
+    searchStatePlaceholder: 'Search state...',
+    paceTitle: 'How much time daily?',
+    paceSubtitle: "We'll size your daily reading to fit your day.",
+    beginJourney: 'Begin My Journey  ✦',
+    back: 'Back',
+  },
+  hi: {
+    stepWord: 'चरण', ofWord: '/',
+    stepTitles: ['आपकी भाषा', 'आपका राज्य', 'दैनिक गति', 'सब तैयार है'],
+    languageTitle: 'कौन सी भाषा?',
+    languageSubtitle: 'आप इसे कभी भी सेटिंग्स में बदल सकते हैं।',
+    comingSoon: 'जल्द आ रहा है',
+    stateTitle: 'आपका राज्य कौन सा है?',
+    stateSubtitle: 'आपकी रैंकिंग आपके शहर के पाठकों के साथ होगी।',
+    statesLoadError: 'राज्यों की सूची लोड नहीं हो सकी।',
+    tryAgain: 'पुनः प्रयास करें',
+    searchStatePlaceholder: 'राज्य खोजें...',
+    paceTitle: 'रोज़ कितना समय?',
+    paceSubtitle: 'हम आपकी दैनिक पढ़ाई को आपके समय के अनुसार तय करेंगे।',
+    beginJourney: 'अपनी यात्रा शुरू करें  ✦',
+    back: 'वापस',
+  },
+};
 
 const STEPS = 4;
 
@@ -34,6 +76,8 @@ export default function OnboardingScreen({ userId, onComplete }) {
   const [pace, setPace] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState(null);
+  const t = STRINGS[language] || STRINGS.en;
+  const pacesForLanguage = PACE_OPTIONS[language] || PACE_OPTIONS.en;
 
   useEffect(() => {
     api.getStates()
@@ -54,7 +98,7 @@ export default function OnboardingScreen({ userId, onComplete }) {
         stateId: selectedState.id,
         dailyPace: pace,
       });
-      onComplete();
+      onComplete(language);
     } catch (e) {
       setSubmitError(e.message);
       setSubmitting(false);
@@ -68,13 +112,6 @@ export default function OnboardingScreen({ userId, onComplete }) {
       .then((data) => { setStates(data); setStatesLoading(false); })
       .catch((e) => { setStatesError(e.message); setStatesLoading(false); });
   };
-
-  const stepTitles = [
-    'Your Language',
-    'Your State',
-    'Daily Pace',
-    'All Set',
-  ];
 
   return (
     <View style={s.root}>
@@ -105,13 +142,13 @@ export default function OnboardingScreen({ userId, onComplete }) {
           </View>
 
           {/* Step label */}
-          <Text style={s.stepLabel}>Step {step} of {STEPS}  ·  {stepTitles[step - 1]}</Text>
+          <Text style={s.stepLabel}>{t.stepWord} {step} {t.ofWord} {STEPS}  ·  {t.stepTitles[step - 1]}</Text>
 
           {/* ── STEP 1: Language ── */}
           {step === 1 && (
             <View style={s.stepContent}>
-              <Text style={s.title}>Which language?</Text>
-              <Text style={s.subtitle}>You can change this anytime in settings.</Text>
+              <Text style={s.title}>{t.languageTitle}</Text>
+              <Text style={s.subtitle}>{t.languageSubtitle}</Text>
               <View style={s.optionList}>
                 {LANGUAGES.map((lang) => (
                   <TouchableOpacity
@@ -138,7 +175,7 @@ export default function OnboardingScreen({ userId, onComplete }) {
                     </View>
                     {!lang.available ? (
                       <View style={s.comingSoonBadge}>
-                        <Text style={s.comingSoonText}>Coming soon</Text>
+                        <Text style={s.comingSoonText}>{t.comingSoon}</Text>
                       </View>
                     ) : language === lang.code && (
                       <Ionicons name="checkmark-circle" size={20} color="#D4AF37" />
@@ -152,8 +189,8 @@ export default function OnboardingScreen({ userId, onComplete }) {
           {/* ── STEP 2: State ── */}
           {step === 2 && (
             <View style={[s.stepContent, { flex: 1 }]}>
-              <Text style={s.title}>Which state?</Text>
-              <Text style={s.subtitle}>You'll be ranked with readers in your city.</Text>
+              <Text style={s.title}>{t.stateTitle}</Text>
+              <Text style={s.subtitle}>{t.stateSubtitle}</Text>
 
               {statesLoading && (
                 <View style={s.centeredMsg}>
@@ -163,9 +200,9 @@ export default function OnboardingScreen({ userId, onComplete }) {
 
               {statesError && (
                 <View style={s.centeredMsg}>
-                  <Text style={s.errorText}>Couldn't load states.</Text>
+                  <Text style={s.errorText}>{t.statesLoadError}</Text>
                   <TouchableOpacity onPress={retryStates} style={s.retryBtn}>
-                    <Text style={s.retryText}>Try again</Text>
+                    <Text style={s.retryText}>{t.tryAgain}</Text>
                   </TouchableOpacity>
                 </View>
               )}
@@ -177,7 +214,7 @@ export default function OnboardingScreen({ userId, onComplete }) {
                     <Ionicons name="search-outline" size={16} color="#7A5C34" style={{ marginRight: 8 }} />
                     <TextInput
                       style={s.searchInput}
-                      placeholder="Search state..."
+                      placeholder={t.searchStatePlaceholder}
                       placeholderTextColor="#7A5C34"
                       value={stateSearch}
                       onChangeText={setStateSearch}
@@ -223,10 +260,10 @@ export default function OnboardingScreen({ userId, onComplete }) {
           {/* ── STEP 3: Pace ── */}
           {step === 3 && (
             <View style={s.stepContent}>
-              <Text style={s.title}>How much time daily?</Text>
-              <Text style={s.subtitle}>We'll size your daily reading to fit your day.</Text>
+              <Text style={s.title}>{t.paceTitle}</Text>
+              <Text style={s.subtitle}>{t.paceSubtitle}</Text>
               <View style={s.optionList}>
-                {PACE_OPTIONS.map((p) => (
+                {pacesForLanguage.map((p) => (
                   <TouchableOpacity
                     key={p.value}
                     style={[s.paceCard, pace === p.value && s.optionSelected]}
@@ -266,7 +303,7 @@ export default function OnboardingScreen({ userId, onComplete }) {
                 >
                   {submitting
                     ? <ActivityIndicator color="#0D0500" size="small" />
-                    : <Text style={s.finishBtnText}>Begin My Journey  ✦</Text>}
+                    : <Text style={s.finishBtnText}>{t.beginJourney}</Text>}
                 </LinearGradient>
               </TouchableOpacity>
             </View>
@@ -276,7 +313,7 @@ export default function OnboardingScreen({ userId, onComplete }) {
           {step > 1 && (
             <TouchableOpacity style={s.backBtn} onPress={() => setStep(step - 1)}>
               <Ionicons name="arrow-back" size={16} color="#C9A96E" />
-              <Text style={s.backText}>Back</Text>
+              <Text style={s.backText}>{t.back}</Text>
             </TouchableOpacity>
           )}
 

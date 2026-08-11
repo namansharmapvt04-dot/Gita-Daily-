@@ -6,7 +6,49 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import api from '../api/client';
 
-export default function TodayChoiceScreen({ userId, onSelect }) {
+const STRINGS = {
+  en: {
+    loadError: "Couldn't load today's reading.",
+    tryAgain: 'Try again',
+    doneTitle: "You're all caught up!",
+    chapterWord: 'Chapter', partWord: 'Part',
+    title: 'How much time\ndo you have today?',
+    subtitle: 'Pick what fits — you can always come back for more.',
+    fullTitle: 'Full Part + Quiz',
+    bestBadge: 'Best',
+    fullDescPrefix: 'Shlokas, explanations & ',
+    question: 'question', questions: 'questions',
+    fullMeta: (min) => `~${min} min · counts toward rank`,
+    quickTitle: 'Quick Read Only',
+    quickDesc: 'Shlokas and explanations, skip the quiz',
+    quickMeta: 'Keeps your streak · no rank score',
+    skipTitle: 'Skip Today',
+    skipDesc: 'Protect your streak for another day',
+    skipMeta: 'Uses a streak freeze',
+  },
+  hi: {
+    loadError: 'आज की पढ़ाई लोड नहीं हो सकी।',
+    tryAgain: 'पुनः प्रयास करें',
+    doneTitle: 'आप पूरी तरह अप टू डेट हैं!',
+    chapterWord: 'अध्याय', partWord: 'भाग',
+    title: 'आज आपके पास\nकितना समय है?',
+    subtitle: 'जो आपके लिए सही हो वह चुनें — आप बाद में और पढ़ सकते हैं।',
+    fullTitle: 'पूरा भाग + प्रश्नोत्तरी',
+    bestBadge: 'सर्वश्रेष्ठ',
+    fullDescPrefix: 'श्लोक, व्याख्याएँ और ',
+    question: 'सवाल', questions: 'सवाल',
+    fullMeta: (min) => `~${min} मिनट · रैंक में गिना जाएगा`,
+    quickTitle: 'सिर्फ़ त्वरित पठन',
+    quickDesc: 'श्लोक और व्याख्याएँ, प्रश्नोत्तरी छोड़ें',
+    quickMeta: 'आपकी स्ट्रीक बनी रहेगी · रैंक स्कोर नहीं',
+    skipTitle: 'आज छोड़ें',
+    skipDesc: 'अपनी स्ट्रीक को एक और दिन के लिए सुरक्षित रखें',
+    skipMeta: 'एक स्ट्रीक फ्रीज़ का उपयोग होगा',
+  },
+};
+
+export default function TodayChoiceScreen({ userId, lang, onSelect }) {
+  const t = STRINGS[lang] || STRINGS.en;
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
