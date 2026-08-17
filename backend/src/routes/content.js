@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../config/db');
 
+const DONE_MESSAGES = {
+  en: 'All available content completed — more chapters coming soon.',
+  hi: 'उपलब्ध सारी सामग्री पूर्ण हो चुकी है — और अध्याय जल्द आएंगे।',
+};
+
 // GET /content/today/:userId
 // Returns the next Part the user hasn't completed yet, with verses + explanations
 // in their preferred language, and today's quiz questions.
@@ -33,7 +38,7 @@ router.get('/today/:userId', async (req, res) => {
       [lastOrder]
     );
     if (partRes.rows.length === 0) {
-      return res.json({ done: true, message: 'All available content completed — more chapters coming soon.' });
+      return res.json({ done: true, message: DONE_MESSAGES[lang] || DONE_MESSAGES.en });
     }
     const part = partRes.rows[0];
 

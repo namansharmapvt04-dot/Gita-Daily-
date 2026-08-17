@@ -2,6 +2,11 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../config/db');
 
+const NO_STREAK_FREEZES_MESSAGES = {
+  en: 'No streak freezes remaining this month',
+  hi: 'इस महीने के लिए कोई स्ट्रीक फ्रीज़ शेष नहीं है',
+};
+
 // POST /reading/submit
 // body: { userId, partId, mode: 'full'|'quick'|'skip', answers: [{questionId, selectedIndex}] }
 //
@@ -19,7 +24,7 @@ router.post('/submit', async (req, res) => {
     await client.query('BEGIN');
 
     const userRes = await client.query(
-      `SELECT streak_count, longest_streak, last_read_date, streak_freezes_remaining
+      `SELECT streak_count, longest_streak, last_read_date, streak_freezes_remaining, preferred_language
        FROM users WHERE id = $1 FOR UPDATE`,
       [userId]
     );
@@ -32,7 +37,8 @@ router.post('/submit', async (req, res) => {
     let newStreak = user.streak_count;
     if (mode === 'skip') {
       if (user.streak_freezes_remaining <= 0) {
-        throw { status: 400, message: 'No streak freezes remaining this month' };
+        const message = NO_STREAK_FREEZES_MESSAGES[user.preferred_language] || NO_STREAK_FREEZES_MESSAGES.en;
+        throw { status: 400, message };
       }
       await client.query(
         `UPDATE users SET streak_freezes_remaining = streak_freezes_remaining - 1 WHERE id = $1`,
