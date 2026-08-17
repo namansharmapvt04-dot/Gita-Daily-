@@ -37,13 +37,17 @@ export const api = {
   getMyRank: (id) => cachedGet(`/leaderboard/me/${id}`),
   getTodayContent: (id) => cachedGet(`/content/today/${id}`),
   getProgress: (id) => cachedGet(`/content/progress/${id}`),
-  getPart: (id) => cachedGet(`/content/part/${id}`),
+  getPart: (id, language) => cachedGet(`/content/part/${id}?language=${language || 'en'}`),
 
   googleAuth: (idToken) => request('/auth/google', { method: 'POST', body: JSON.stringify({ idToken }) }),
 
   updateUserPrefs: async (id, data) => {
     const result = await request(`/users/${id}`, { method: 'PATCH', body: JSON.stringify(data) });
     invalidate(`/users/${id}`);
+    // Language changes affect these too — without this, a stale cache in the old
+    // language can stick around for up to CACHE_TTL after switching.
+    invalidate(`/content/today/${id}`);
+    invalidate(`/content/progress/${id}`);
     return result;
   },
 

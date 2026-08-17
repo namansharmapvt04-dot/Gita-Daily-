@@ -23,7 +23,7 @@ const STRINGS = {
 // content = { part, verses, questions }
 // mode = 'full' | 'quick' | 'review'
 // onContinue(mode, content)
-export default function ReadingScreen({ content, mode, lang, onContinue }) {
+export default function ReadingScreen({ content, mode, lang, onContinue, onBack }) {
   const { part, verses } = content;
   const scrollRef = useRef(null);
   const t = STRINGS[lang] || STRINGS.en;
@@ -45,6 +45,9 @@ export default function ReadingScreen({ content, mode, lang, onContinue }) {
 
       {/* Header */}
       <View style={s.header}>
+        <TouchableOpacity onPress={onBack} style={s.backBtn} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={20} color="#D4AF37" />
+        </TouchableOpacity>
         <View style={s.chapterBadge}>
           <Text style={s.chapterBadgeText}>
             {t.chapter} {part.chapter_number}  ·  {t.part} {part.part_number}
@@ -116,6 +119,7 @@ const s = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     paddingHorizontal: 20, paddingTop: 56, paddingBottom: 14,
   },
+  backBtn: { width: 34, height: 34, borderRadius: 17, backgroundColor: 'rgba(212,175,55,0.10)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(212,175,55,0.22)' },
   chapterBadge: { backgroundColor: 'rgba(212,175,55,0.12)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 5, borderWidth: 1, borderColor: 'rgba(212,175,55,0.28)' },
   chapterBadgeText: { fontSize: 12, fontWeight: '600', color: '#D4AF37' },
   timeBadge: { flexDirection: 'row', alignItems: 'center', gap: 4 },

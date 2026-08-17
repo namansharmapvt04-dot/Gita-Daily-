@@ -22,7 +22,7 @@ const STRINGS = {
 };
 
 // onDone(result) — result has streak_count, points_earned, quiz_score
-export default function QuizScreen({ userId, content, lang, onDone }) {
+export default function QuizScreen({ userId, content, lang, onDone, onBack }) {
   const { part, questions } = content;
   const t = STRINGS[lang] || STRINGS.en;
   const [index, setIndex] = useState(0);
@@ -90,6 +90,9 @@ export default function QuizScreen({ userId, content, lang, onDone }) {
 
       {/* Header */}
       <View style={s.header}>
+        <TouchableOpacity onPress={onBack} style={s.backBtn} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={20} color="#D4AF37" />
+        </TouchableOpacity>
         <View style={s.chapterBadge}>
           <Text style={s.chapterBadgeText}>{t.quiz}  ·  {t.chapter} {part.chapter_number}</Text>
         </View>
@@ -214,6 +217,7 @@ const s = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     paddingHorizontal: 20, paddingTop: 56, paddingBottom: 12,
   },
+  backBtn: { width: 34, height: 34, borderRadius: 17, backgroundColor: 'rgba(212,175,55,0.10)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(212,175,55,0.22)' },
   chapterBadge: { backgroundColor: 'rgba(212,175,55,0.12)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 5, borderWidth: 1, borderColor: 'rgba(212,175,55,0.28)' },
   chapterBadgeText: { fontSize: 12, fontWeight: '600', color: '#D4AF37' },
   progressLabel: { fontSize: 13, color: '#7A5C34', fontWeight: '600' },

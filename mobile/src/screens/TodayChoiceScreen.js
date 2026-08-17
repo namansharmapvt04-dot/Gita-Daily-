@@ -47,7 +47,7 @@ const STRINGS = {
   },
 };
 
-export default function TodayChoiceScreen({ userId, lang, onSelect }) {
+export default function TodayChoiceScreen({ userId, lang, onSelect, onBack }) {
   const t = STRINGS[lang] || STRINGS.en;
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -77,10 +77,13 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
     return (
       <View style={s.centered}>
         <LinearGradient colors={['#0D0500', '#1C0900']} style={StyleSheet.absoluteFillObject} />
+        <TouchableOpacity onPress={onBack} style={s.centeredBackBtn} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={22} color="#D4AF37" />
+        </TouchableOpacity>
         <Ionicons name="cloud-offline-outline" size={40} color="rgba(212,175,55,0.4)" />
-        <Text style={s.errorText}>Couldn't load today's reading.</Text>
+        <Text style={s.errorText}>{t.loadError}</Text>
         <TouchableOpacity onPress={load} style={s.retryBtn}>
-          <Text style={s.retryText}>Try again</Text>
+          <Text style={s.retryText}>{t.tryAgain}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -90,10 +93,13 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
     return (
       <View style={s.centered}>
         <LinearGradient colors={['#0D0500', '#1C0900', '#2A1100']} style={StyleSheet.absoluteFillObject} />
+        <TouchableOpacity onPress={onBack} style={s.centeredBackBtn} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={22} color="#D4AF37" />
+        </TouchableOpacity>
         <View style={s.doneIconWrap}>
           <Ionicons name="checkmark-circle" size={56} color="#D4AF37" />
         </View>
-        <Text style={s.doneTitle}>You're all caught up!</Text>
+        <Text style={s.doneTitle}>{t.doneTitle}</Text>
         <Text style={s.doneSub}>{content.message}</Text>
       </View>
     );
@@ -112,6 +118,12 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
       />
       <View style={s.glow1} />
 
+      <View style={s.topBar}>
+        <TouchableOpacity onPress={onBack} style={s.backBtn} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
+          <Ionicons name="arrow-back" size={22} color="#D4AF37" />
+        </TouchableOpacity>
+      </View>
+
       <ScrollView
         style={{ flex: 1 }}
         contentContainerStyle={s.scroll}
@@ -120,12 +132,12 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
         {/* Chapter badge */}
         <View style={s.chapterBadge}>
           <Text style={s.chapterBadgeText}>
-            Chapter {part.chapter_number}  ·  Part {part.part_number}
+            {t.chapterWord} {part.chapter_number}  ·  {t.partWord} {part.part_number}
           </Text>
         </View>
 
-        <Text style={s.title}>How much time{'\n'}do you have today?</Text>
-        <Text style={s.subtitle}>Pick what fits — you can always come back for more.</Text>
+        <Text style={s.title}>{t.title}</Text>
+        <Text style={s.subtitle}>{t.subtitle}</Text>
 
         {/* Full Part + Quiz */}
         <TouchableOpacity
@@ -144,16 +156,16 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
               </View>
               <View style={s.cardText}>
                 <View style={s.cardTitleRow}>
-                  <Text style={s.cardTitle}>Full Part + Quiz</Text>
+                  <Text style={s.cardTitle}>{t.fullTitle}</Text>
                   <View style={s.bestBadge}>
-                    <Text style={s.bestBadgeText}>Best</Text>
+                    <Text style={s.bestBadgeText}>{t.bestBadge}</Text>
                   </View>
                 </View>
                 <Text style={s.cardDesc}>
-                  Shlokas, explanations &amp; {qCount} question{qCount !== 1 ? 's' : ''}
+                  {t.fullDescPrefix}{qCount} {qCount !== 1 ? t.questions : t.question}
                 </Text>
                 <Text style={s.cardMeta}>
-                  ~{part.estimated_minutes} min · counts toward rank
+                  {t.fullMeta(part.estimated_minutes)}
                 </Text>
               </View>
             </View>
@@ -172,9 +184,9 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
                 <Ionicons name="flash-outline" size={18} color="#D4AF37" />
               </View>
               <View style={s.cardText}>
-                <Text style={s.cardTitle}>Quick Read Only</Text>
-                <Text style={s.cardDesc}>Shlokas and explanations, skip the quiz</Text>
-                <Text style={s.cardMeta}>Keeps your streak · no rank score</Text>
+                <Text style={s.cardTitle}>{t.quickTitle}</Text>
+                <Text style={s.cardDesc}>{t.quickDesc}</Text>
+                <Text style={s.cardMeta}>{t.quickMeta}</Text>
               </View>
             </View>
           </View>
@@ -192,9 +204,9 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
                 <Ionicons name="shield-checkmark-outline" size={18} color="#D4AF37" />
               </View>
               <View style={s.cardText}>
-                <Text style={s.cardTitle}>Skip Today</Text>
-                <Text style={s.cardDesc}>Protect your streak for another day</Text>
-                <Text style={s.cardMeta}>Uses a streak freeze</Text>
+                <Text style={s.cardTitle}>{t.skipTitle}</Text>
+                <Text style={s.cardDesc}>{t.skipDesc}</Text>
+                <Text style={s.cardMeta}>{t.skipMeta}</Text>
               </View>
             </View>
           </View>
@@ -209,8 +221,15 @@ export default function TodayChoiceScreen({ userId, lang, onSelect }) {
 const s = StyleSheet.create({
   root: { flex: 1, backgroundColor: '#0D0500' },
   centered: { flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: '#0D0500', padding: 24 },
+  centeredBackBtn: {
+    position: 'absolute', top: 56, left: 22,
+    width: 38, height: 38, borderRadius: 19, backgroundColor: 'rgba(212,175,55,0.10)',
+    alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(212,175,55,0.22)',
+  },
   glow1: { position: 'absolute', width: 280, height: 280, borderRadius: 140, backgroundColor: 'rgba(212,175,55,0.05)', top: -80, right: -80 },
-  scroll: { paddingHorizontal: 22, paddingTop: 64, paddingBottom: 40 },
+  topBar: { paddingHorizontal: 22, paddingTop: 56 },
+  backBtn: { width: 38, height: 38, borderRadius: 19, backgroundColor: 'rgba(212,175,55,0.10)', alignItems: 'center', justifyContent: 'center', borderWidth: 1, borderColor: 'rgba(212,175,55,0.22)' },
+  scroll: { paddingHorizontal: 22, paddingTop: 20, paddingBottom: 40 },
 
   chapterBadge: { alignSelf: 'flex-start', backgroundColor: 'rgba(212,175,55,0.12)', borderRadius: 8, paddingHorizontal: 12, paddingVertical: 5, borderWidth: 1, borderColor: 'rgba(212,175,55,0.28)', marginBottom: 16 },
   chapterBadgeText: { fontSize: 12, fontWeight: '600', color: '#D4AF37', letterSpacing: 0.5 },

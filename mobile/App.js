@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet, StatusBar } from 'react-native';
+import { View, ActivityIndicator, StyleSheet, StatusBar, BackHandler } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LinearGradient } from 'expo-linear-gradient';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
@@ -99,11 +99,17 @@ export default function App() {
   const handleBegin = () => setScreen('todayChoice');
   const handleBrowse = () => setScreen('browse');
   const handleBackFromBrowse = () => setScreen('home');
+  const handleBackFromTodayChoice = () => setScreen('home');
+  // Reading opened via Browse (mode 'review') returns to Browse; opened via
+  // TodayChoice ('full'/'quick') returns there instead.
+  const handleBackFromReading = () => setScreen(activeMode === 'review' ? 'browse' : 'todayChoice');
+  // activeContent/activeMode are untouched, so this lands back on the same reading content.
+  const handleBackFromQuiz = () => setScreen('reading');
 
   const handleOpenPart = async (part, mode) => {
     if (mode === 'next') { setScreen('todayChoice'); return; }
     try {
-      const data = await api.getPart(part.id);
+      const data = await api.getPart(part.id, lang);
       setActiveContent(data);
       setActiveMode('review');
       setScreen('reading');
@@ -139,6 +145,24 @@ export default function App() {
   const handleQuizDone = (result) => { setLastResult(result); setScreen('completion'); };
   const handleContinueReading = () => setScreen('todayChoice');
   const handleStopForToday = () => setScreen('home');
+
+  // Map the Android/gesture hardware back button to the same handler as each
+  // screen's in-app back arrow, so it never just exits the app mid-flow.
+  useEffect(() => {
+    const backHandlers = {
+      settings: handleBackFromSettings,
+      browse: handleBackFromBrowse,
+      todayChoice: handleBackFromTodayChoice,
+      reading: handleBackFromReading,
+      quiz: handleBackFromQuiz,
+    };
+    const sub = BackHandler.addEventListener('hardwareBackPress', () => {
+      const handler = backHandlers[screen];
+      if (handler) { handler(); return true; }
+      return false;
+    });
+    return () => sub.remove();
+  }, [screen, activeMode]);
 
   // ── Loading splash ──
   if (checking || skipBusy) {
@@ -182,13 +206,13 @@ export default function App() {
         <BrowseScreen userId={userId} lang={lang} onOpenPart={handleOpenPart} onBack={handleBackFromBrowse} />
       )}
       {screen === 'todayChoice' && (
-        <TodayChoiceScreen userId={userId} lang={lang} onSelect={handleChoiceSelect} />
+        <TodayChoiceScreen userId={userId} lang={lang} onSelect={handleChoiceSelect} onBack={handleBackFromTodayChoice} />
       )}
       {screen === 'reading' && activeContent && (
-        <ReadingScreen content={activeContent} mode={activeMode} lang={lang} onContinue={handleReadingContinue} />
+        <ReadingScreen content={activeContent} mode={activeMode} lang={lang} onContinue={handleReadingContinue} onBack={handleBackFromReading} />
       )}
       {screen === 'quiz' && activeContent && (
-        <QuizScreen userId={userId} content={activeContent} lang={lang} onDone={handleQuizDone} />
+        <QuizScreen userId={userId} content={activeContent} lang={lang} onDone={handleQuizDone} onBack={handleBackFromQuiz} />
       )}
       {screen === 'completion' && lastResult && (
         <CompletionScreen
