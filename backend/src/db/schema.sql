@@ -50,9 +50,14 @@ CREATE INDEX IF NOT EXISTS idx_users_score ON users(total_score DESC);
 CREATE TABLE IF NOT EXISTS chapters (
   id SERIAL PRIMARY KEY,
   number INT NOT NULL UNIQUE,          -- 1..18
-  title TEXT NOT NULL,                 -- localized title handled via chapter_translation if needed later
+  title TEXT NOT NULL,                 -- English title
+  title_hi TEXT,                       -- Hindi title (traditional Sanskrit chapter name); falls back to title if null
   total_verses INT NOT NULL
 );
+
+-- Column added after the table already existed in production — see the google_id
+-- comment above for why this ALTER (not just the CREATE TABLE) is needed.
+ALTER TABLE chapters ADD COLUMN IF NOT EXISTS title_hi TEXT;
 
 CREATE TABLE IF NOT EXISTS parts (
   id SERIAL PRIMARY KEY,

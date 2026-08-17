@@ -31,11 +31,12 @@ router.get('/today/:userId', async (req, res) => {
 
     // Step 2: find the next part
     const partRes = await pool.query(
-      `SELECT p.id, p.part_number, p.estimated_minutes, c.number as chapter_number, c.title as chapter_title
+      `SELECT p.id, p.part_number, p.estimated_minutes, c.number as chapter_number,
+              CASE WHEN $2 = 'hi' AND c.title_hi IS NOT NULL THEN c.title_hi ELSE c.title END as chapter_title
        FROM parts p JOIN chapters c ON c.id = p.chapter_id
        WHERE p.global_order > $1
        ORDER BY p.global_order ASC LIMIT 1`,
-      [lastOrder]
+      [lastOrder, lang]
     );
     if (partRes.rows.length === 0) {
       return res.json({ done: true, message: DONE_MESSAGES[lang] || DONE_MESSAGES.en });
@@ -90,15 +91,20 @@ router.get('/today/:userId', async (req, res) => {
 router.get('/progress/:userId', async (req, res) => {
   const { userId } = req.params;
   try {
+    const userRes = await pool.query(`SELECT preferred_language FROM users WHERE id = $1`, [userId]);
+    if (userRes.rows.length === 0) return res.status(404).json({ error: 'User not found' });
+    const lang = userRes.rows[0].preferred_language;
+
     const result = await pool.query(
       `SELECT p.id, p.part_number, p.global_order, p.estimated_minutes,
-              c.number as chapter_number, c.title as chapter_title,
+              c.number as chapter_number,
+              CASE WHEN $2 = 'hi' AND c.title_hi IS NOT NULL THEN c.title_hi ELSE c.title END as chapter_title,
               EXISTS(
                 SELECT 1 FROM reading_log rl WHERE rl.user_id = $1 AND rl.part_id = p.id
               ) as completed
        FROM parts p JOIN chapters c ON c.id = p.chapter_id
        ORDER BY p.global_order ASC`,
-      [userId]
+      [userId, lang]
     );
 
     const lastCompletedOrder = result.rows
@@ -125,9 +131,10 @@ router.get('/part/:partId', async (req, res) => {
   const lang = req.query.language || 'en';
   try {
     const partRes = await pool.query(
-      `SELECT p.id, p.part_number, p.estimated_minutes, c.number as chapter_number, c.title as chapter_title
+      `SELECT p.id, p.part_number, p.estimated_minutes, c.number as chapter_number,
+              CASE WHEN $2 = 'hi' AND c.title_hi IS NOT NULL THEN c.title_hi ELSE c.title END as chapter_title
        FROM parts p JOIN chapters c ON c.id = p.chapter_id WHERE p.id = $1`,
-      [partId]
+      [partId, lang]
     );
     if (partRes.rows.length === 0) return res.status(404).json({ error: 'Part not found' });
     const part = partRes.rows[0];

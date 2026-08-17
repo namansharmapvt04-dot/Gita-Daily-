@@ -48,10 +48,10 @@ async function seedStates() {
 
 async function seedChapter(chapterData) {
   const chapterRes = await pool.query(
-    `INSERT INTO chapters (number, title, total_verses) VALUES ($1, $2, $3)
-     ON CONFLICT (number) DO UPDATE SET title = EXCLUDED.title, total_verses = EXCLUDED.total_verses
+    `INSERT INTO chapters (number, title, title_hi, total_verses) VALUES ($1, $2, $3, $4)
+     ON CONFLICT (number) DO UPDATE SET title = EXCLUDED.title, title_hi = EXCLUDED.title_hi, total_verses = EXCLUDED.total_verses
      RETURNING id`,
-    [chapterData.number, chapterData.title, chapterData.total_verses]
+    [chapterData.number, chapterData.title, chapterData.title_hi, chapterData.total_verses]
   );
   const chapterId = chapterRes.rows[0].id;
 

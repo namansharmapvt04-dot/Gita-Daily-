@@ -6,6 +6,7 @@
 const chapter3 = {
     number: 3,
     title: 'The Yoga of Action',
+    title_hi: 'कर्म योग',
     total_verses: 43,
     parts: [
         // Part 1: verses 1-4 (Arjuna's confusion: knowledge vs action)

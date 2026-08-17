@@ -1,6 +1,7 @@
 const chapter14 = {
     number: 14,
     title: 'The Three Qualities of Nature',
+    title_hi: 'गुणत्रय विभाग योग',
     total_verses: 27,
     parts: [
         {

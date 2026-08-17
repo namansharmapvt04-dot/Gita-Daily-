@@ -3,6 +3,7 @@
 const chapter10 = {
     number: 10,
     title: 'The Yoga of Divine Manifestations',
+    title_hi: 'विभूति योग',
     total_verses: 42,
     parts: [
         {

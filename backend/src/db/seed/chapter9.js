@@ -4,6 +4,7 @@
 const chapter9 = {
     number: 9,
     title: 'The Royal Knowledge and Royal Secret',
+    title_hi: 'राजविद्या राजगुह्य योग',
     total_verses: 34,
     parts: [
         {

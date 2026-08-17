@@ -4,6 +4,7 @@
 const chapter4 = {
     number: 4,
     title: 'The Yoga of Knowledge and Action',
+    title_hi: 'ज्ञान कर्म संन्यास योग',
     total_verses: 42,
     parts: [
         {

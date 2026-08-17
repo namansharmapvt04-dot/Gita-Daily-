@@ -1,6 +1,7 @@
 const chapter16 = {
     number: 16,
     title: 'The Divine and Demoniac Natures',
+    title_hi: 'दैवासुर सम्पद विभाग योग',
     total_verses: 24,
     parts: [
         {

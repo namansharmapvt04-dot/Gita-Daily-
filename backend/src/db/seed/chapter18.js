@@ -1,6 +1,7 @@
 const chapter18 = {
     number: 18,
     title: 'Liberation Through Renunciation',
+    title_hi: 'मोक्ष संन्यास योग',
     total_verses: 78,
     parts: [
         {

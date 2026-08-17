@@ -1,6 +1,7 @@
 const chapter12 = {
     number: 12,
     title: 'The Yoga of Devotion',
+    title_hi: 'भक्ति योग',
     total_verses: 20,
     parts: [
         {

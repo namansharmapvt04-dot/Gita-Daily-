@@ -7,6 +7,7 @@
 const chapter2 = {
     number: 2,
     title: 'The Yoga of Knowledge',
+    title_hi: 'सांख्य योग',
     total_verses: 72,
     parts: [
         {

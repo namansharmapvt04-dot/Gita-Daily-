@@ -1,6 +1,7 @@
 const chapter17 = {
     number: 17,
     title: 'The Threefold Division of Faith',
+    title_hi: 'श्रद्धात्रय विभाग योग',
     total_verses: 28,
     parts: [
         {

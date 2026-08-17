@@ -4,6 +4,7 @@
 const chapter7 = {
     number: 7,
     title: 'The Yoga of Knowledge and Wisdom',
+    title_hi: 'ज्ञान विज्ञान योग',
     total_verses: 30,
     parts: [
         {

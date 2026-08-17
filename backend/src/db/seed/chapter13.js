@@ -1,6 +1,7 @@
 const chapter13 = {
     number: 13,
     title: 'The Field and the Knower of the Field',
+    title_hi: 'क्षेत्र क्षेत्रज्ञ विभाग योग',
     total_verses: 34,
     parts: [
         {

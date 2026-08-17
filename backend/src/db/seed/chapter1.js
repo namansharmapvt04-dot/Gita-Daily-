@@ -7,6 +7,7 @@
 const chapter1 = {
     number: 1,
     title: 'Arjuna\'s dilemma',
+    title_hi: 'अर्जुन विषाद योग',
     total_verses: 47,
     parts: [
         // Part 1: verses 1-3 (already seeded previously - kept for continuity)

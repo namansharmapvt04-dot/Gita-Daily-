@@ -4,6 +4,7 @@
 const chapter11 = {
     number: 11,
     title: 'The Vision of the Universal Form',
+    title_hi: 'विश्वरूप दर्शन योग',
     total_verses: 55,
     parts: [
         {

@@ -1,6 +1,7 @@
 const chapter15 = {
     number: 15,
     title: 'The Supreme Person',
+    title_hi: 'पुरुषोत्तम योग',
     total_verses: 20,
     parts: [
         {

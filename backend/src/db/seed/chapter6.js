@@ -3,6 +3,7 @@
 const chapter6 = {
     number: 6,
     title: 'The Yoga of Meditation',
+    title_hi: 'ध्यान योग',
     total_verses: 47,
     parts: [
         {

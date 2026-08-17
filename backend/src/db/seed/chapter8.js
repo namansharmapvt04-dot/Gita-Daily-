@@ -4,6 +4,7 @@
 const chapter8 = {
     number: 8,
     title: 'The Yoga of the Imperishable',
+    title_hi: 'अक्षर ब्रह्म योग',
     total_verses: 28,
     parts: [
         {

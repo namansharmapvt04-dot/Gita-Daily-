@@ -4,6 +4,7 @@
 const chapter5 = {
     number: 5,
     title: 'The Yoga of Renunciation',
+    title_hi: 'कर्म संन्यास योग',
     total_verses: 29,
     parts: [
         {
